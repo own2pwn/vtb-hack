@@ -38,6 +38,19 @@ final class ViewController: UIViewController {
         setupStream()
     }
 
+    private func recognizeOnDevice() {
+        frameExtractor.imagePublisher
+            .throttle(for: .milliseconds(250), scheduler: DispatchQueue.global(qos: .default), latest: true)
+            .flatMap { (frame: UIImage) in
+                return OnDeviceRecognizer.predict(frame)
+            }
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] probs in
+                self.resultLabel.text = probs.map { $0.key }.joined(separator: "\n")
+            }
+            .store(in: &bag)
+    }
+
     private func setupStream() {
         frameExtractor.imagePublisher
             .receive(on: DispatchQueue.main)
@@ -145,7 +158,7 @@ final class ViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] mergedListings in
                 let offers = mergedListings
-                    .compactMap { $0.offers}
+                    .compactMap { $0.offers }
                     .flatMap { $0 }
 
                 let tinderVC = router.createTinderVC(offers: offers)

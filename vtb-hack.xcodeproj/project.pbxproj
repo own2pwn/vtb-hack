@@ -46,6 +46,8 @@
 		69A566BC252FA10300E824BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A566BA252FA10300E824BD /* LaunchScreen.storyboard */; };
 		69A566DD252FA84300E824BD /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566DC252FA84300E824BD /* FrameExtractor.swift */; };
 		69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566E0252FB7EC00E824BD /* WithLatestFrom.swift */; };
+		69BBBE4A25325801007BFD2A /* OnDeviceRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBBE4925325801007BFD2A /* OnDeviceRecognition.swift */; };
+		69BBBE5525325AEA007BFD2A /* OnDeviceModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 69BBBE4E25325AA0007BFD2A /* OnDeviceModel.mlmodel */; };
 		69D1EC1625320EDB002C73D4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 69D1EC1525320EDB002C73D4 /* Kingfisher */; };
 		69D26EE32532487B0029FCF3 /* CarloanRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D26EE22532487B0029FCF3 /* CarloanRequest.swift */; };
 		69D26EE8253249020029FCF3 /* CarloanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D26EE7253249020029FCF3 /* CarloanResponse.swift */; };
@@ -104,6 +106,8 @@
 		69A566BD252FA10300E824BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69A566DC252FA84300E824BD /* FrameExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
 		69A566E0252FB7EC00E824BD /* WithLatestFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithLatestFrom.swift; sourceTree = "<group>"; };
+		69BBBE4925325801007BFD2A /* OnDeviceRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRecognition.swift; sourceTree = "<group>"; };
+		69BBBE4E25325AA0007BFD2A /* OnDeviceModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OnDeviceModel.mlmodel; sourceTree = "<group>"; };
 		69D26EE22532487B0029FCF3 /* CarloanRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarloanRequest.swift; sourceTree = "<group>"; };
 		69D26EE7253249020029FCF3 /* CarloanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarloanResponse.swift; sourceTree = "<group>"; };
 		69D4FE162531B9C80051B0E0 /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 		132555C22531050F00B68C69 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				69BBBE4E25325AA0007BFD2A /* OnDeviceModel.mlmodel */,
 				132555C32531050F00B68C69 /* PriceFormatter.swift */,
 			);
 			path = Util;
@@ -252,6 +257,7 @@
 				69D4FE182531B9C80051B0E0 /* Model */,
 				69D4FE162531B9C80051B0E0 /* Backend.swift */,
 				69A566DC252FA84300E824BD /* FrameExtractor.swift */,
+				69BBBE4925325801007BFD2A /* OnDeviceRecognition.swift */,
 				69D4FE1E2531B9C80051B0E0 /* QueryResolver.swift */,
 				69FBA1A52531F35A00B59E54 /* RecognitionService.swift */,
 				69D4FE172531B9C80051B0E0 /* SearchService.swift */,
@@ -490,6 +496,7 @@
 				132555A62530EBF900B68C69 /* TSLabel.swift in Sources */,
 				1325556D2530DA0800B68C69 /* TinderCardModel.swift in Sources */,
 				13F5ADC52531ED6F00E28C73 /* SliderView.swift in Sources */,
+				69BBBE5525325AEA007BFD2A /* OnDeviceModel.mlmodel in Sources */,
 				132555802530E5E000B68C69 /* FavoritesViewController.swift in Sources */,
 				69D4FE1F2531B9C80051B0E0 /* Backend.swift in Sources */,
 				69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */,
@@ -503,6 +510,7 @@
 				69D4FE222531B9C80051B0E0 /* GroupedOffersRequest.swift in Sources */,
 				132555652530DA0200B68C69 /* UIView.swift in Sources */,
 				13F5ADC82531F00500E28C73 /* PlaceholderView.swift in Sources */,
+				69BBBE4A25325801007BFD2A /* OnDeviceRecognition.swift in Sources */,
 				132553662530D8C500B68C69 /* ButtonStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
