@@ -75,7 +75,7 @@ final class AutoViewController: UIViewController {
     }
 
     private let termSlider = SliderView() ~> {
-        $0.setup(title: "Cрок кредита", initValue: 60, minValue: 12, maxValue: 360)
+        $0.setup(title: "Cрок кредита", initValue: 30, minValue: 12, maxValue: 60)
     }
 
     private let creditButton = CustomButton() ~> {
@@ -222,13 +222,13 @@ final class AutoViewController: UIViewController {
             comment: "",
             customerParty: CarloanRequest.CustomerParty(
                 email: email,
-                incomeAmount: 50000, // TODO:
+                incomeAmount: 140_000, // TODO:
                 person: CarloanRequest.Person(
                     birthDateTime: "1981-11-01",
                     birthPlace: "Калуга",
                     familyName: lastName,
                     firstName: firstName,
-                    gender: "2", // TODO: 2?
+                    gender: "male",
                     middleName: middleName,
                     nationalityCountryCode: "RU"
                 ),
@@ -245,11 +245,14 @@ final class AutoViewController: UIViewController {
         let req: AnyPublisher<CarloanResponse, VTBProxyResponseError> =
             VTBProxy.post(url: URL(string: "https://gw.hackathon.vtb.ru/vtb/hackathon/carloan")!, model: creditInfo)
 
-        req.sink { completion in
+        req.receive(on: DispatchQueue.main)
+            .sink { completion in
             switch completion {
             case let .failure(e):
                 assertionFailure(e.localizedDescription)
+                self.showAlert(title: "Ошибка", message: e.localizedDescription)
             case .finished:
+                self.showAlert(title: "Отлично", message: "Заявка успешно создана!")
                 break
             }
         } receiveValue: { response in
