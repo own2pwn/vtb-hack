@@ -8,9 +8,9 @@ enum VTBProxyResponseError: Error {
 
 enum VTBProxy {
     static let basicHeaders: [String: String] = [
-        "x-ibm-client-id": "78985970044dd4db2506956b45328c75",
         "accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "x-ibm-client-id": String(data: Data(base64Encoded: "Nzg5ODU5NzAwNDRkZDRkYjI1MDY5NTZiNDUzMjhjNzU=").unsafelyUnwrapped, encoding: .utf8).unsafelyUnwrapped
     ]
 
     static let session: URLSession = {
