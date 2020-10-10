@@ -12,7 +12,11 @@ extension GroupedOffersResponse {
 
 extension GroupedOffersResponse.Offer {
     var title: String {
-        return "\(carInfo!.markInfo!.name!) \(carInfo!.modelInfo!.name!) \(carInfo!.superGen!.name!)"
+        return [
+            carInfo?.markInfo?.name,
+            carInfo?.modelInfo?.name,
+            carInfo?.superGen?.name
+        ].compactMap { $0 }.joined(separator: " ")
     }
 
     var minPrice: Int {

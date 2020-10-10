@@ -1,14 +1,9 @@
-//
-//  TinderViewController.swift
-//  vtb-hack
-//
-//  Created by Semyon on 09.10.2020.
-//
-
 import PopBounceButton
 import Shuffle_iOS
 
-class TinderViewController: UIViewController {
+var likedCarsModel: [TinderCardModel] = []
+
+final class TinderViewController: UIViewController {
     private let cardStack = SwipeCardStack()
     private let buttonStackView = ButtonStackView()
     private let model: [TinderCardModel]
@@ -117,13 +112,15 @@ extension TinderViewController: ButtonStackViewDelegate, SwipeCardStackDataSourc
         return model.count
     }
 
-    func didSwipeAllCards(_ cardStack: SwipeCardStack) {
-        print("Swiped all cards!")
-    }
+    func didSwipeAllCards(_ cardStack: SwipeCardStack) {}
 
     func cardStack(_ cardStack: SwipeCardStack, didUndoCardAt index: Int, from direction: SwipeDirection) {}
 
-    func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {}
+    func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
+        if direction == .right || direction == .up {
+            likedCarsModel.append(model[index])
+        }
+    }
 
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         print("Card tapped")

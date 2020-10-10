@@ -98,7 +98,6 @@ final class ViewController: UIViewController {
                     .first?.key
             }
             .compactMap { $0 }
-            .eraseToAnyPublisher()
             .flatMap { (query) -> AnyPublisher<GroupedOffersResponse?, Never> in
                 Just(query)
                     .setFailureType(to: Error.self)

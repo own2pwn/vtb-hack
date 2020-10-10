@@ -612,7 +612,7 @@ extension GroupedOffersResponse {
 
     struct TransportTax: Codable {
         let taxByYear, year, rid, rate: Int?
-        let horsePower, holdingPeriodMonth, boost: Int?
+        let horsePower, holdingPeriodMonth, boost: Double?
 
         enum CodingKeys: String, CodingKey {
             case taxByYear = "tax_by_year"
