@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131C43362531CFA500057D51 /* AutoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131C43352531CFA500057D51 /* AutoViewController.swift */; };
 		1325535E2530D84F00B68C69 /* TinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1325535D2530D84F00B68C69 /* TinderViewController.swift */; };
 		132553662530D8C500B68C69 /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132553652530D8C500B68C69 /* ButtonStackView.swift */; };
 		132555652530DA0200B68C69 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132555642530DA0200B68C69 /* UIView.swift */; };
@@ -31,6 +32,9 @@
 		132555A92530EC2D00B68C69 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132555A82530EC2D00B68C69 /* NSAttributedString.swift */; };
 		132555AF2530ED8E00B68C69 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132555AE2530ED8E00B68C69 /* Font.swift */; };
 		132555CC2531050F00B68C69 /* PriceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132555C32531050F00B68C69 /* PriceFormatter.swift */; };
+		13F5ADC52531ED6F00E28C73 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADC42531ED6F00E28C73 /* SliderView.swift */; };
+		13F5ADC82531F00500E28C73 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADC72531F00500E28C73 /* PlaceholderView.swift */; };
+		13F5ADCB25320B8700E28C73 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADCA25320B8700E28C73 /* CustomButton.swift */; };
 		694721992531BAD6004F25EA /* Root-Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721982531BAD6004F25EA /* Root-Formatters.swift */; };
 		69A566B0252FA10300E824BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566AF252FA10300E824BD /* AppDelegate.swift */; };
 		69A566B4252FA10300E824BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566B3252FA10300E824BD /* ViewController.swift */; };
@@ -53,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131C43352531CFA500057D51 /* AutoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoViewController.swift; sourceTree = "<group>"; };
 		1325535D2530D84F00B68C69 /* TinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderViewController.swift; sourceTree = "<group>"; };
 		132553652530D8C500B68C69 /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		132555642530DA0200B68C69 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -77,6 +82,9 @@
 		132555A82530EC2D00B68C69 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		132555AE2530ED8E00B68C69 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		132555C32531050F00B68C69 /* PriceFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceFormatter.swift; sourceTree = "<group>"; };
+		13F5ADC42531ED6F00E28C73 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		13F5ADC72531F00500E28C73 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		13F5ADCA25320B8700E28C73 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2D38C19CE7178D77C5F025B5 /* Pods-vtb-hack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vtb-hack.debug.xcconfig"; path = "Target Support Files/Pods-vtb-hack/Pods-vtb-hack.debug.xcconfig"; sourceTree = "<group>"; };
 		694721982531BAD6004F25EA /* Root-Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Root-Formatters.swift"; sourceTree = "<group>"; };
 		69A566AC252FA10300E824BD /* vtb-hack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vtb-hack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131C43382531CFA900057D51 /* Auto */ = {
+			isa = PBXGroup;
+			children = (
+				131C43352531CFA500057D51 /* AutoViewController.swift */,
+			);
+			path = Auto;
+			sourceTree = "<group>";
+		};
 		132555622530D9E400B68C69 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +170,7 @@
 		132555742530E1C500B68C69 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				131C43382531CFA900057D51 /* Auto */,
 				1325557E2530E5C900B68C69 /* Favorites */,
 				694721972531BAA9004F25EA /* Root */,
 				132555622530D9E400B68C69 /* Tinder */,
@@ -203,7 +220,10 @@
 			isa = PBXGroup;
 			children = (
 				132555922530E9E300B68C69 /* ShadowableCollectionViewCell.swift */,
+				13F5ADCA25320B8700E28C73 /* CustomButton.swift */,
 				132555A52530EBF900B68C69 /* TSLabel.swift */,
+				13F5ADC42531ED6F00E28C73 /* SliderView.swift */,
+				13F5ADC72531F00500E28C73 /* PlaceholderView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -437,8 +457,10 @@
 				69A566B0252FA10300E824BD /* AppDelegate.swift in Sources */,
 				69D4FE232531B9C80051B0E0 /* GroupedOffersResponse.swift in Sources */,
 				132555852530E65800B68C69 /* Tap.swift in Sources */,
+				131C43362531CFA500057D51 /* AutoViewController.swift in Sources */,
 				132555772530E20A00B68C69 /* MainNavigationController.swift in Sources */,
 				1325558F2530E83500B68C69 /* UIColor.swift in Sources */,
+				13F5ADCB25320B8700E28C73 /* CustomButton.swift in Sources */,
 				132555A92530EC2D00B68C69 /* NSAttributedString.swift in Sources */,
 				694721992531BAD6004F25EA /* Root-Formatters.swift in Sources */,
 				1325535E2530D84F00B68C69 /* TinderViewController.swift in Sources */,
@@ -448,6 +470,7 @@
 				69A566DD252FA84300E824BD /* FrameExtractor.swift in Sources */,
 				132555A62530EBF900B68C69 /* TSLabel.swift in Sources */,
 				1325556D2530DA0800B68C69 /* TinderCardModel.swift in Sources */,
+				13F5ADC52531ED6F00E28C73 /* SliderView.swift in Sources */,
 				132555802530E5E000B68C69 /* FavoritesViewController.swift in Sources */,
 				69D4FE1F2531B9C80051B0E0 /* Backend.swift in Sources */,
 				69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */,
@@ -459,6 +482,7 @@
 				1325556E2530DA0800B68C69 /* TinderCardFooterView.swift in Sources */,
 				69D4FE222531B9C80051B0E0 /* GroupedOffersRequest.swift in Sources */,
 				132555652530DA0200B68C69 /* UIView.swift in Sources */,
+				13F5ADC82531F00500E28C73 /* PlaceholderView.swift in Sources */,
 				132553662530D8C500B68C69 /* ButtonStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
