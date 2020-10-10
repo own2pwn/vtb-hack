@@ -23,10 +23,10 @@ public enum Font {
     static let body1 = UIFont.systemFont(ofSize: 16, weight: .medium)
     static let body2 = UIFont.systemFont(ofSize: 16, weight: .regular)
     
-    static let subhead1 = UIFont.systemFont(ofSize: 16, weight: .bold)
-    static let subhead2 = UIFont.systemFont(ofSize: 16, weight: .semibold)
-    static let subhead3 = UIFont.systemFont(ofSize: 16, weight: .medium)
-    static let subhead4 = UIFont.systemFont(ofSize: 20, weight: .regular)
+    static let subhead1 = UIFont.systemFont(ofSize: 14, weight: .bold)
+    static let subhead2 = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    static let subhead3 = UIFont.systemFont(ofSize: 14, weight: .medium)
+    static let subhead4 = UIFont.systemFont(ofSize: 14, weight: .regular)
     
     static let caption1 = UIFont.systemFont(ofSize: 12, weight: .medium)
     static let caption2 = UIFont.systemFont(ofSize: 10, weight: .medium)

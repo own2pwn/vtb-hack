@@ -1,5 +1,6 @@
 PODS:
   - Cartography (4.0.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - pop (1.0.12)
   - PopBounceButton (1.2.2):
     - pop (~> 1.0)
@@ -7,22 +8,25 @@ PODS:
 
 DEPENDENCIES:
   - Cartography
+  - IQKeyboardManagerSwift
   - PopBounceButton
   - Shuffle-iOS
 
 SPEC REPOS:
   trunk:
     - Cartography
+    - IQKeyboardManagerSwift
     - pop
     - PopBounceButton
     - Shuffle-iOS
 
 SPEC CHECKSUMS:
   Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PopBounceButton: 34105a012678222f058f8d2621672724a3d5c9fb
   Shuffle-iOS: 87e4d3503475f3d684a375358649911e36fe139f
 
-PODFILE CHECKSUM: 337d7e5a82ef20493ea3f62965f5db9e8bea69e5
+PODFILE CHECKSUM: e9b12b96b6021db542fcec4a87b2f523a7ee41b5
 
 COCOAPODS: 1.9.3

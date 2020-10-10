@@ -8,5 +8,6 @@ target 'vtb-hack' do
 	pod 'Shuffle-iOS'
 	pod 'PopBounceButton'
 	pod 'Cartography'
+	pod 'IQKeyboardManagerSwift'
 
 end

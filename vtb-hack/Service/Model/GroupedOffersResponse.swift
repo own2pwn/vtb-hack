@@ -1,14 +1,14 @@
 import Foundation
 
 struct GroupedOffersResponse: Codable {
-    let offers: [Offer]
-    let priceRange: PriceRange
-    let pagination: Pagination
-    let sorting: Sorting
-    let responseFlags: ResponseFlags
-    let searchParameters: SearchParameters
-    let grouping: Grouping
-    let searchID, status: String
+    let offers: [Offer]?
+    let priceRange: PriceRange?
+    let pagination: Pagination?
+    let sorting: Sorting?
+    let responseFlags: ResponseFlags?
+    let searchParameters: SearchParameters?
+    let grouping: Grouping?
+    let searchID, status: String?
 
     enum CodingKeys: String, CodingKey {
         case offers
@@ -26,7 +26,7 @@ extension GroupedOffersResponse {
     // MARK: - Grouping
 
     struct Grouping: Codable {
-        let singleOffersCount, groupsCount: Int
+        let singleOffersCount, groupsCount: Int?
 
         enum CodingKeys: String, CodingKey {
             case singleOffersCount = "single_offers_count"
@@ -37,30 +37,28 @@ extension GroupedOffersResponse {
     // MARK: - Offer
 
     struct Offer: Codable {
-        let carInfo: CarInfo
-        let url, mobileURL: String
-        let colorHex, status, category, section: String
-        let availability: String
-        let oldCategoryID: Int
-        let priceInfo: PriceInfo
-        let offerDescription: String
-        let documents: Documents
-        let state: State
-        let id: String
-        let additionalInfo: AdditionalInfo
-        let sellerType: String
-        let salon: Salon
-        let seller: Seller
-        let services: [Service]?
-        let counters, recallInfo: Counters
-        let priceHistory: [PriceHistory]
-        let tags: [String]
-        let isFavorite: Bool
-        let created: String
-        let grouppingInfo: GrouppingInfo
-        let discountOptions: DiscountOptions
-        let ownerExpenses: OwnerExpenses
-        let deliveryInfo: Counters
+        let carInfo: CarInfo?
+        let url, mobileURL: String?
+        let colorHex, status, category, section: String?
+        let availability: String?
+        let oldCategoryID: Int?
+        let priceInfo: PriceInfo?
+        let offerDescription: String?
+        let documents: Documents?
+        let state: State?
+        let id: String?
+        let additionalInfo: AdditionalInfo?
+        let sellerType: String?
+        let salon: Salon?
+        let seller: Seller?
+        let counters, recallInfo: Counters?
+        let priceHistory: [PriceHistory]?
+        let tags: [String]?
+        let isFavorite: Bool?
+        let created: String?
+        let grouppingInfo: GrouppingInfo?
+        let discountOptions: DiscountOptions?
+        let deliveryInfo: Counters?
 
         enum CodingKeys: String, CodingKey {
             case carInfo = "car_info"
@@ -74,7 +72,7 @@ extension GroupedOffersResponse {
             case documents, state, id
             case additionalInfo = "additional_info"
             case sellerType = "seller_type"
-            case salon, seller, services, counters
+            case salon, seller, counters
             case recallInfo = "recall_info"
             case priceHistory = "price_history"
             case tags
@@ -82,7 +80,6 @@ extension GroupedOffersResponse {
             case created
             case grouppingInfo = "groupping_info"
             case discountOptions = "discount_options"
-            case ownerExpenses = "owner_expenses"
             case deliveryInfo = "delivery_info"
         }
     }
@@ -90,23 +87,19 @@ extension GroupedOffersResponse {
     // MARK: - AdditionalInfo
 
     struct AdditionalInfo: Codable {
-        let hidden, isOnModeration: Bool
-        let exchange: Bool?
-        let updateDate, creationDate: String
-        let mobileAutoservicesURL: String
-        let hotInfo: HotInfo
-        let redemptionAvailable: Bool
-        let freshDate, countersStartDate: String
-        let chatOnly: Bool
-        let dealerCardPromo: String
-        let reviewSummary: ReviewSummary
-        let priceStats: PriceStats
-        let booking: Counters
+        let hidden, isOnModeration: Bool?
+        let updateDate, creationDate: String?
+        let mobileAutoservicesURL: String?
+        let hotInfo: HotInfo?
+        let redemptionAvailable: Bool?
+        let freshDate, countersStartDate: String?
+        let chatOnly: Bool?
+        let dealerCardPromo: String?
+        let reviewSummary, priceStats, booking: Counters?
 
         enum CodingKeys: String, CodingKey {
             case hidden
             case isOnModeration = "is_on_moderation"
-            case exchange
             case updateDate = "update_date"
             case creationDate = "creation_date"
             case mobileAutoservicesURL = "mobile_autoservices_url"
@@ -126,13 +119,11 @@ extension GroupedOffersResponse {
 
     struct Counters: Codable {}
 
-    struct Morphology: Codable {}
-
     // MARK: - HotInfo
 
     struct HotInfo: Codable {
-        let isHot: Bool
-        let startTime, endTime: String
+        let isHot: Bool?
+        let startTime, endTime: String?
 
         enum CodingKeys: String, CodingKey {
             case isHot = "is_hot"
@@ -141,46 +132,24 @@ extension GroupedOffersResponse {
         }
     }
 
-    // MARK: - PriceStats
-
-    struct PriceStats: Codable {
-        let lastYearPricePercentageDiff: Int
-
-        enum CodingKeys: String, CodingKey {
-            case lastYearPricePercentageDiff = "last_year_price_percentage_diff"
-        }
-    }
-
-    // MARK: - ReviewSummary
-
-    struct ReviewSummary: Codable {
-        let avgRating: Double?
-        let counter: Int?
-
-        enum CodingKeys: String, CodingKey {
-            case avgRating = "avg_rating"
-            case counter
-        }
-    }
-
     // MARK: - CarInfo
 
     struct CarInfo: Codable {
-        let armored: Bool
-        let bodyType, engineType, transmission, drive: String
-        let mark, model, superGenID, configurationID: String
-        let techParamID, complectationID: String
-        let wheelLeft: Bool
-        let horsePower: Int
-        let markInfo: MarkInfo
-        let modelInfo: ModelInfo
-        let superGen: SuperGen
-        let configuration: Configuration
-        let techParam: CarInfoTechParam
-        let complectation: CarInfoComplectation
-        let vendor: String
-        let equipment: Equipment
-        let steeringWheel: String
+        let armored: Bool?
+        let bodyType, engineType, transmission, drive: String?
+        let mark, model, superGenID, configurationID: String?
+        let techParamID, complectationID: String?
+        let wheelLeft: Bool?
+        let horsePower: Int?
+        let markInfo: MarkInfo?
+        let modelInfo: ModelInfo?
+        let superGen: SuperGen?
+        let configuration: Configuration?
+        let techParam: TechParam?
+        let complectation: CarInfoComplectation?
+        let vendor: String?
+        let equipment: Equipment?
+        let steeringWheel: String?
 
         enum CodingKeys: String, CodingKey {
             case armored
@@ -206,9 +175,9 @@ extension GroupedOffersResponse {
     // MARK: - CarInfoComplectation
 
     struct CarInfoComplectation: Codable {
-        let id, name: String
-        let availableOptions: [String]
-        let vendorColors: [VendorColor]
+        let id, name: String?
+        let availableOptions: [String]?
+        let vendorColors: [VendorColor]?
 
         enum CodingKeys: String, CodingKey {
             case id, name
@@ -220,19 +189,16 @@ extension GroupedOffersResponse {
     // MARK: - VendorColor
 
     struct VendorColor: Codable {
-        let bodyColorID, markColorID: Int
-        let nameRu: String
-        let hexCodes: [String]
-        let colorType: String
-        let stockColor: StockColor
-        let photos: [Photo]
-        let mainColor: Bool
+        let bodyColorID, markColorID: Int?
+        let nameRu, colorType: String?
+        let stockColor: StockColor?
+        let photos: [Photo]?
+        let mainColor: Bool?
 
         enum CodingKeys: String, CodingKey {
             case bodyColorID = "body_color_id"
             case markColorID = "mark_color_id"
             case nameRu = "name_ru"
-            case hexCodes = "hex_codes"
             case colorType = "color_type"
             case stockColor = "stock_color"
             case photos
@@ -243,18 +209,18 @@ extension GroupedOffersResponse {
     // MARK: - Photo
 
     struct Photo: Codable {
-        let name: String
-        let sizes: PhotoSizes
+        let name: String?
+        let sizes: PhotoSizes?
     }
 
     // MARK: - PhotoSizes
 
     struct PhotoSizes: Codable {
-        let orig, wizardv3Mr, wizardv3, cattouch: String
-        let small, the320X240, the1200X900, the1200X900N: String
-        let thumbM, full, the832X624, the456X342: String
-        let the120X90, the92X69, islandoff, thumbS: String
-        let thumbS2X: String
+        let orig, wizardv3Mr, wizardv3, cattouch: String?
+        let small, the320X240, the1200X900, the1200X900N: String?
+        let thumbM, full, the832X624, the456X342: String?
+        let the120X90, the92X69, islandoff, thumbS: String?
+        let thumbS2X: String?
 
         enum CodingKeys: String, CodingKey {
             case orig
@@ -278,7 +244,7 @@ extension GroupedOffersResponse {
     // MARK: - StockColor
 
     struct StockColor: Codable {
-        let hexCode, nameRu: String
+        let hexCode, nameRu: String?
 
         enum CodingKeys: String, CodingKey {
             case hexCode = "hex_code"
@@ -289,15 +255,13 @@ extension GroupedOffersResponse {
     // MARK: - Configuration
 
     struct Configuration: Codable {
-        let id, bodyType: String
-        let doorsCount: Int
-        let autoClass, humanName: String
-        let trunkVolumeMin: Int
-        let bodyTypeGroup: String
-        let mainPhoto: MainPhoto
-        let tags: [String]
-        let trunkVolumeMax: Int?
-        let notice: String?
+        let id, bodyType: String?
+        let doorsCount: Int?
+        let autoClass, humanName: String?
+        let trunkVolumeMin: Int?
+        let bodyTypeGroup: String?
+        let mainPhoto: MainPhoto?
+        let tags: [String]?
 
         enum CodingKeys: String, CodingKey {
             case id
@@ -309,21 +273,19 @@ extension GroupedOffersResponse {
             case bodyTypeGroup = "body_type_group"
             case mainPhoto = "main_photo"
             case tags
-            case trunkVolumeMax = "trunk_volume_max"
-            case notice
         }
     }
 
     // MARK: - MainPhoto
 
     struct MainPhoto: Codable {
-        let sizes: PurpleSizes
+        let sizes: PurpleSizes?
     }
 
     // MARK: - PurpleSizes
 
     struct PurpleSizes: Codable {
-        let orig, wizardv3Mr, cattouch: String
+        let orig, wizardv3Mr, cattouch: String?
 
         enum CodingKeys: String, CodingKey {
             case orig
@@ -335,113 +297,88 @@ extension GroupedOffersResponse {
     // MARK: - Equipment
 
     struct Equipment: Codable {
-        let cruiseControl, asr, esp, usb: Bool
-        let sportSeats, multiWheel: Bool
-        let autoPark: Bool?
-        let heatedWashSystem, ashtrayAndCigaretteLighter, airbagPassenger, frontCentreArmrest: Bool
-        let decorativeInteriorLighting, bas, lock, rearCamera: Bool
-        let doorSillPanel, servo: Bool?
-        let electroMirrors, drl, electroWindowBack: Bool
-        let the18InchWheels, multizoneClimateControl: Bool?
-        let mirrorsHeat: Bool
-        let darkInterior, comboInterior, driverSeatUpdown: Bool?
-        let wheelHeat, ledLights, musicSuper: Bool
-        let engineProof: Bool?
-        let glonass, airbagDriver, isofix, aux: Bool
-        let electroWindowFront, lightSensor, hcc, automaticLightingControl: Bool
-        let airbagCurtain, computer, keylessEntry, seatTransformation: Bool
-        let alarm, paintMetallic, alloyWheelDisks, startButton: Bool
-        let rainSensor, airbagSide: Bool
-        let tyrePressure: Bool?
-        let electroTrunk, abs, frontSeatsHeat, bluetooth: Bool
-        let wheelLeather, wheelConfiguration2, wheelConfiguration1, immo: Bool
-        let autoMirrors: Bool?
-        let the12VSocket, thirdRearHeadrest: Bool
-        let adaptiveLight, navigation, the17InchWheels, parkAssistR: Bool?
-        let startStopFunction, wirelessCharger, passengerSeatUpdown, highBeamAssist: Bool?
-        let wheelPower, passengerSeatElectric, lightCleaner, fabricSeats: Bool?
-        let leatherGearStick, ptf, climateControl2: Bool?
+        let cruiseControl, esp, usb, multiWheel: Bool?
+        let spareWheel, audiosystemTv, heatedWashSystem, airbagPassenger: Bool?
+        let frontCentreArmrest, appleCarplay, lock, electroMirrors: Bool?
+        let drl, electroWindowBack, driverSeatSupport, easyTrunkOpening: Bool?
+        let mirrorsHeat, the17InchWheels, parkAssistF, rearSeatsHeat: Bool?
+        let leather, wheelHeat, ledLights, parkAssistR: Bool?
+        let kneeAirbag, glonass, wirelessCharger, airbagDriver: Bool?
+        let isofix, electroWindowFront, driveModeSys, lightSensor: Bool?
+        let hcc, airbagCurtain, vsm, computer: Bool?
+        let keylessEntry, seatTransformation, androidAuto, passengerSeatElectric: Bool?
+        let alloyWheelDisks, leatherGearStick, blindSpot, startButton: Bool?
+        let ptf, rainSensor, airbagSide, tyrePressure: Bool?
+        let remoteEngineStart, audiosystemCD, electroTrunk, frontSeatsHeat: Bool?
+        let bluetooth, wheelLeather, climateControl2, windscreenHeat: Bool?
+        let autoMirrors, the12VSocket, the360Camera: Bool?
 
         enum CodingKeys: String, CodingKey {
             case cruiseControl = "cruise-control"
-            case asr, esp, usb
-            case sportSeats = "sport-seats"
+            case esp, usb
             case multiWheel = "multi-wheel"
-            case autoPark = "auto-park"
+            case spareWheel = "spare-wheel"
+            case audiosystemTv = "audiosystem-tv"
             case heatedWashSystem = "heated-wash-system"
-            case ashtrayAndCigaretteLighter = "ashtray-and-cigarette-lighter"
             case airbagPassenger = "airbag-passenger"
             case frontCentreArmrest = "front-centre-armrest"
-            case decorativeInteriorLighting = "decorative-interior-lighting"
-            case bas, lock
-            case rearCamera = "rear-camera"
-            case doorSillPanel = "door-sill-panel"
-            case servo
+            case appleCarplay = "apple-carplay"
+            case lock
             case electroMirrors = "electro-mirrors"
             case drl
             case electroWindowBack = "electro-window-back"
-            case the18InchWheels = "18-inch-wheels"
-            case multizoneClimateControl = "multizone-climate-control"
+            case driverSeatSupport = "driver-seat-support"
+            case easyTrunkOpening = "easy-trunk-opening"
             case mirrorsHeat = "mirrors-heat"
-            case darkInterior = "dark-interior"
-            case comboInterior = "combo-interior"
-            case driverSeatUpdown = "driver-seat-updown"
+            case the17InchWheels = "17-inch-wheels"
+            case parkAssistF = "park-assist-f"
+            case rearSeatsHeat = "rear-seats-heat"
+            case leather
             case wheelHeat = "wheel-heat"
             case ledLights = "led-lights"
-            case musicSuper = "music-super"
-            case engineProof = "engine-proof"
+            case parkAssistR = "park-assist-r"
+            case kneeAirbag = "knee-airbag"
             case glonass
+            case wirelessCharger = "wireless-charger"
             case airbagDriver = "airbag-driver"
-            case isofix, aux
+            case isofix
             case electroWindowFront = "electro-window-front"
+            case driveModeSys = "drive-mode-sys"
             case lightSensor = "light-sensor"
             case hcc
-            case automaticLightingControl = "automatic-lighting-control"
             case airbagCurtain = "airbag-curtain"
-            case computer
+            case vsm, computer
             case keylessEntry = "keyless-entry"
             case seatTransformation = "seat-transformation"
-            case alarm
-            case paintMetallic = "paint-metallic"
+            case androidAuto = "android-auto"
+            case passengerSeatElectric = "passenger-seat-electric"
             case alloyWheelDisks = "alloy-wheel-disks"
+            case leatherGearStick = "leather-gear-stick"
+            case blindSpot = "blind-spot"
             case startButton = "start-button"
+            case ptf
             case rainSensor = "rain-sensor"
             case airbagSide = "airbag-side"
             case tyrePressure = "tyre-pressure"
+            case remoteEngineStart = "remote-engine-start"
+            case audiosystemCD = "audiosystem-cd"
             case electroTrunk = "electro-trunk"
-            case abs
             case frontSeatsHeat = "front-seats-heat"
             case bluetooth
             case wheelLeather = "wheel-leather"
-            case wheelConfiguration2 = "wheel-configuration2"
-            case wheelConfiguration1 = "wheel-configuration1"
-            case immo
+            case climateControl2 = "climate-control-2"
+            case windscreenHeat = "windscreen-heat"
             case autoMirrors = "auto-mirrors"
             case the12VSocket = "12v-socket"
-            case thirdRearHeadrest = "third-rear-headrest"
-            case adaptiveLight = "adaptive-light"
-            case navigation
-            case the17InchWheels = "17-inch-wheels"
-            case parkAssistR = "park-assist-r"
-            case startStopFunction = "start-stop-function"
-            case wirelessCharger = "wireless-charger"
-            case passengerSeatUpdown = "passenger-seat-updown"
-            case highBeamAssist = "high-beam-assist"
-            case wheelPower = "wheel-power"
-            case passengerSeatElectric = "passenger-seat-electric"
-            case lightCleaner = "light-cleaner"
-            case fabricSeats = "fabric-seats"
-            case leatherGearStick = "leather-gear-stick"
-            case ptf
-            case climateControl2 = "climate-control-2"
+            case the360Camera = "360-camera"
         }
     }
 
     // MARK: - MarkInfo
 
     struct MarkInfo: Codable {
-        let code, name, ruName: String
-        let logo: MarkInfoLogo
+        let code, name, ruName: String?
+        let logo: MarkInfoLogo?
 
         enum CodingKeys: String, CodingKey {
             case code, name
@@ -453,14 +390,14 @@ extension GroupedOffersResponse {
     // MARK: - MarkInfoLogo
 
     struct MarkInfoLogo: Codable {
-        let name: String
-        let sizes: FluffySizes
+        let name: String?
+        let sizes: FluffySizes?
     }
 
     // MARK: - FluffySizes
 
     struct FluffySizes: Codable {
-        let logo, bigLogo: String
+        let logo, bigLogo: String?
 
         enum CodingKeys: String, CodingKey {
             case logo
@@ -471,8 +408,8 @@ extension GroupedOffersResponse {
     // MARK: - ModelInfo
 
     struct ModelInfo: Codable {
-        let code, name, ruName: String
-        let morphology: Morphology?
+        let code, name, ruName: String?
+        let morphology: Counters?
         let nameplate: Nameplate?
 
         enum CodingKeys: String, CodingKey {
@@ -485,7 +422,7 @@ extension GroupedOffersResponse {
     // MARK: - Nameplate
 
     struct Nameplate: Codable {
-        let code, name, semanticURL: String
+        let code, name, semanticURL: String?
 
         enum CodingKeys: String, CodingKey {
             case code, name
@@ -496,9 +433,9 @@ extension GroupedOffersResponse {
     // MARK: - SuperGen
 
     struct SuperGen: Codable {
-        let id, name, ruName: String
-        let yearFrom: Int
-        let priceSegment: String
+        let id, name, ruName: String?
+        let yearFrom: Int?
+        let priceSegment: String?
 
         enum CodingKeys: String, CodingKey {
             case id, name
@@ -508,20 +445,19 @@ extension GroupedOffersResponse {
         }
     }
 
-    // MARK: - CarInfoTechParam
+    // MARK: - TechParam
 
-    struct CarInfoTechParam: Codable {
-        let id, name, nameplate: String
-        let displacement: Int
-        let engineType, gearType, transmission: String
-        let power, powerKvt: Int
-        let humanName: String
-        let acceleration: Double
-        let clearanceMin: Int
-        let fuelRate: Double
+    struct TechParam: Codable {
+        let id: String?
+        let displacement: Int?
+        let engineType, gearType, transmission: String?
+        let power, powerKvt: Int?
+        let humanName: String?
+        let acceleration: Double?
+        let clearanceMin: Int?
 
         enum CodingKeys: String, CodingKey {
-            case id, name, nameplate, displacement
+            case id, displacement
             case engineType = "engine_type"
             case gearType = "gear_type"
             case transmission, power
@@ -529,18 +465,16 @@ extension GroupedOffersResponse {
             case humanName = "human_name"
             case acceleration
             case clearanceMin = "clearance_min"
-            case fuelRate = "fuel_rate"
         }
     }
 
     // MARK: - DiscountOptions
 
     struct DiscountOptions: Codable {
-        let tradein, credit: Int?
-        let maxDiscount: Int
+        let credit, maxDiscount: Int?
 
         enum CodingKeys: String, CodingKey {
-            case tradein, credit
+            case credit
             case maxDiscount = "max_discount"
         }
     }
@@ -548,9 +482,9 @@ extension GroupedOffersResponse {
     // MARK: - Documents
 
     struct Documents: Codable {
-        let ptsOriginal, customCleared: Bool
-        let year: Int
-        let vin, pts: String
+        let ptsOriginal, customCleared: Bool?
+        let year: Int?
+        let vin, pts: String?
 
         enum CodingKeys: String, CodingKey {
             case ptsOriginal = "pts_original"
@@ -562,18 +496,18 @@ extension GroupedOffersResponse {
     // MARK: - GrouppingInfo
 
     struct GrouppingInfo: Codable {
-        let grouppingParams: GrouppingParams
-        let size: Int
-        let priceFrom: Max
-        let uniqueColorsCount: Int
-        let priceTo: Max
-        let colors: [String]
-        let baseEquipmentCount: Int
-        let groupingID: String
-        let techParams: [TechParamElement]
-        let complectations: [ComplectationElement]
-        let offerCounter: OfferCounter
-        let productionYears: ProductionYears
+        let grouppingParams: GrouppingParams?
+        let size: Int?
+        let priceFrom: Max?
+        let uniqueColorsCount: Int?
+        let priceTo: Max?
+        let colors: [String]?
+        let baseEquipmentCount: Int?
+        let groupingID: String?
+        let techParams: [TechParam]?
+        let complectations: [ComplectationElement]?
+        let offerCounter: OfferCounter?
+        let productionYears: ProductionYears?
 
         enum CodingKeys: String, CodingKey {
             case grouppingParams = "groupping_params"
@@ -594,13 +528,13 @@ extension GroupedOffersResponse {
     // MARK: - ComplectationElement
 
     struct ComplectationElement: Codable {
-        let id, name: String
+        let id, name: String?
     }
 
     // MARK: - GrouppingParams
 
     struct GrouppingParams: Codable {
-        let configurationID: String
+        let configurationID: String?
 
         enum CodingKeys: String, CodingKey {
             case configurationID = "configuration_id"
@@ -610,7 +544,7 @@ extension GroupedOffersResponse {
     // MARK: - OfferCounter
 
     struct OfferCounter: Codable {
-        let newCars: String
+        let newCars: String?
 
         enum CodingKeys: String, CodingKey {
             case newCars = "new_cars"
@@ -620,10 +554,10 @@ extension GroupedOffersResponse {
     // MARK: - Max
 
     struct Max: Codable {
-        let price: Int
-        let currency: String
-        let rurPrice, usdPrice, eurPrice, dprice: Int
-        let rurDprice, usdDprice, eurDprice: Int
+        let price: Int?
+        let currency: String?
+        let rurPrice, usdPrice, eurPrice, dprice: Int?
+        let rurDprice, usdDprice, eurDprice: Int?
 
         enum CodingKeys: String, CodingKey {
             case price, currency
@@ -640,7 +574,7 @@ extension GroupedOffersResponse {
     // MARK: - ProductionYears
 
     struct ProductionYears: Codable {
-        let minYear, maxYear: Int
+        let minYear, maxYear: Int?
 
         enum CodingKeys: String, CodingKey {
             case minYear = "min_year"
@@ -648,48 +582,11 @@ extension GroupedOffersResponse {
         }
     }
 
-    // MARK: - TechParamElement
-
-    struct TechParamElement: Codable {
-        let id, name, nameplate: String
-        let displacement: Int
-        let engineType, gearType, transmission: String
-        let power, powerKvt: Int
-        let humanName: String
-        let acceleration: Double
-        let clearanceMin: Int?
-        let fuelRate: Double
-
-        enum CodingKeys: String, CodingKey {
-            case id, name, nameplate, displacement
-            case engineType = "engine_type"
-            case gearType = "gear_type"
-            case transmission, power
-            case powerKvt = "power_kvt"
-            case humanName = "human_name"
-            case acceleration
-            case clearanceMin = "clearance_min"
-            case fuelRate = "fuel_rate"
-        }
-    }
-
-    // MARK: - OwnerExpenses
-
-    struct OwnerExpenses: Codable {
-        let transportTax: TransportTax
-        let osagoInsurance: [OsagoInsurance]
-
-        enum CodingKeys: String, CodingKey {
-            case transportTax = "transport_tax"
-            case osagoInsurance = "osago_insurance"
-        }
-    }
-
     // MARK: - OsagoInsurance
 
     struct OsagoInsurance: Codable {
-        let insuranceCompany: String
-        let price: Int
+        let insuranceCompany: String?
+        let price: Int?
 
         enum CodingKeys: String, CodingKey {
             case insuranceCompany = "insurance_company"
@@ -700,8 +597,8 @@ extension GroupedOffersResponse {
     // MARK: - TransportTax
 
     struct TransportTax: Codable {
-        let taxByYear, year, rid, rate: Int
-        let horsePower, holdingPeriodMonth, boost: Int
+        let taxByYear, year, rid, rate: Int?
+        let horsePower, holdingPeriodMonth, boost: Double?
 
         enum CodingKeys: String, CodingKey {
             case taxByYear = "tax_by_year"
@@ -715,11 +612,11 @@ extension GroupedOffersResponse {
     // MARK: - PriceHistory
 
     struct PriceHistory: Codable {
-        let price: Int
-        let currency, createTimestamp: String
-        let rurPrice, usdPrice, eurPrice: Int
-        let withNDS: Bool
-        let dprice, rurDprice, usdDprice, eurDprice: Int
+        let price: Int?
+        let currency, createTimestamp: String?
+        let rurPrice, usdPrice, eurPrice: Int?
+        let withNDS: Bool?
+        let dprice, rurDprice, usdDprice, eurDprice: Int?
 
         enum CodingKeys: String, CodingKey {
             case price, currency
@@ -738,11 +635,11 @@ extension GroupedOffersResponse {
     // MARK: - PriceInfo
 
     struct PriceInfo: Codable {
-        let price: Int
-        let currency: String
-        let rurPrice, usdPrice, eurPrice: Int
-        let withNDS: Bool
-        let dprice, rurDprice, usdDprice, eurDprice: Int
+        let price: Int?
+        let currency: String?
+        let rurPrice, usdPrice, eurPrice: Int?
+        let withNDS: Bool?
+        let dprice, rurDprice, usdDprice, eurDprice: Int?
 
         enum CodingKeys: String, CodingKey {
             case price, currency
@@ -760,24 +657,22 @@ extension GroupedOffersResponse {
     // MARK: - Salon
 
     struct Salon: Codable {
-        let salonID, name: String
-        let isOficial: Bool
-        let place: Place
-        let offersCount: Int
-        let editContact, editAddress: Bool
-        let code, registrationDate: String
-        let salonHash: String?
-        let dealerID, clientID, logoURL: String
-        let actualStock: Bool
-        let clientIDS: [String]
-        let openHours: String
-        let carMarks: [CarMark]
-        let logo, mainPhoto: LogoElement
-        let dealerGallery: [LogoElement]
-        let offerCounters: OfferCounters
-        let category: [String]
-        let net: Net
-        let motoMarks: [MotoMark]?
+        let salonID, name: String?
+        let isOficial: Bool?
+        let place: Place?
+        let offersCount: Int?
+        let editContact, editAddress: Bool?
+        let code, registrationDate, salonHash, dealerID: String?
+        let clientID, logoURL: String?
+        let actualStock, loyaltyProgram: Bool?
+        let clientIDS: [String]?
+        let openHours: String?
+        let carMarks: [CarMark]?
+        let logo, mainPhoto: LogoElement?
+        let dealerGallery: [LogoElement]?
+        let offerCounters: OfferCounters?
+        let category: [String]?
+        let net: Net?
 
         enum CodingKeys: String, CodingKey {
             case salonID = "salon_id"
@@ -794,6 +689,7 @@ extension GroupedOffersResponse {
             case clientID = "client_id"
             case logoURL = "logo_url"
             case actualStock = "actual_stock"
+            case loyaltyProgram = "loyalty_program"
             case clientIDS = "client_ids"
             case openHours = "open_hours"
             case carMarks = "car_marks"
@@ -802,15 +698,14 @@ extension GroupedOffersResponse {
             case dealerGallery = "dealer_gallery"
             case offerCounters = "offer_counters"
             case category, net
-            case motoMarks = "moto_marks"
         }
     }
 
     // MARK: - CarMark
 
     struct CarMark: Codable {
-        let code, name, ruName: String
-        let logo: CarMarkLogo
+        let code, name, ruName: String?
+        let logo: CarMarkLogo?
 
         enum CodingKeys: String, CodingKey {
             case code, name
@@ -822,28 +717,28 @@ extension GroupedOffersResponse {
     // MARK: - CarMarkLogo
 
     struct CarMarkLogo: Codable {
-        let name: String
-        let sizes: TentacledSizes
+        let name: String?
+        let sizes: TentacledSizes?
     }
 
     // MARK: - TentacledSizes
 
     struct TentacledSizes: Codable {
-        let logo: String
+        let logo: String?
     }
 
     // MARK: - LogoElement
 
     struct LogoElement: Codable {
-        let name: String
-        let sizes: DealerGallerySizes
+        let name: String?
+        let sizes: DealerGallerySizes?
     }
 
     // MARK: - DealerGallerySizes
 
     struct DealerGallerySizes: Codable {
-        let thumbM2X, offertouchret, gallery, wizardv3Mr: String
-        let cattouchret, cattouch: String
+        let thumbM2X, offertouchret, gallery, wizardv3Mr: String?
+        let cattouchret, cattouch: String?
 
         enum CodingKeys: String, CodingKey {
             case thumbM2X = "thumb_m_2x"
@@ -853,17 +748,11 @@ extension GroupedOffersResponse {
         }
     }
 
-    // MARK: - MotoMark
-
-    struct MotoMark: Codable {
-        let code: String
-    }
-
     // MARK: - Net
 
     struct Net: Codable {
-        let id: Int
-        let name, semanticURL: String
+        let id: Int?
+        let name, semanticURL: String?
 
         enum CodingKeys: String, CodingKey {
             case id, name
@@ -874,22 +763,20 @@ extension GroupedOffersResponse {
     // MARK: - OfferCounters
 
     struct OfferCounters: Codable {
-        let carsAll: Int
-        let motoAll: Int?
+        let carsAll: Int?
 
         enum CodingKeys: String, CodingKey {
             case carsAll = "cars_all"
-            case motoAll = "moto_all"
         }
     }
 
     // MARK: - Place
 
     struct Place: Codable {
-        let address: String
-        let coord: Coord
-        let geobaseID: String
-        let regionInfo: PlaceRegionInfo
+        let address: String?
+        let coord: Coord?
+        let geobaseID: String?
+        let regionInfo: PlaceRegionInfo?
         let metro: [Metro]?
 
         enum CodingKeys: String, CodingKey {
@@ -903,31 +790,31 @@ extension GroupedOffersResponse {
     // MARK: - Coord
 
     struct Coord: Codable {
-        let latitude, longitude: Double
+        let latitude, longitude: Double?
     }
 
     // MARK: - Metro
 
     struct Metro: Codable {
-        let rid, name: String
-        let distance: Double
-        let location: Coord
-        let lines: [Line]
+        let rid, name: String?
+        let distance: Double?
+        let location: Coord?
+        let lines: [Line]?
     }
 
     // MARK: - Line
 
     struct Line: Codable {
-        let name, color: String
+        let name, color: String?
     }
 
     // MARK: - PlaceRegionInfo
 
     struct PlaceRegionInfo: Codable {
-        let id, name, genitive, dative: String
-        let accusative, prepositional, preposition: String
-        let latitude, longitude: Double
-        let parentIDS: [String]
+        let id, name, genitive, dative: String?
+        let accusative, prepositional, preposition: String?
+        let latitude, longitude: Double?
+        let parentIDS: [String]?
 
         enum CodingKeys: String, CodingKey {
             case id, name, genitive, dative, accusative, prepositional, preposition, latitude, longitude
@@ -938,10 +825,10 @@ extension GroupedOffersResponse {
     // MARK: - Seller
 
     struct Seller: Codable {
-        let name: String
-        let phones: [Phone]
-        let location: Location
-        let redirectPhones, chatsEnabled: Bool
+        let name: String?
+        let phones: [Phone]?
+        let location: Location?
+        let redirectPhones, chatsEnabled: Bool?
 
         enum CodingKeys: String, CodingKey {
             case name, phones, location
@@ -953,28 +840,28 @@ extension GroupedOffersResponse {
     // MARK: - Location
 
     struct Location: Codable {
-        let address: String
-        let coord: Coord
-        let geobaseID: String
-        let regionInfo: PlaceRegionInfo
-        let distanceToSelectedGeo: [DistanceToSelectedGeo]
+        let address: String?
+        let coord: Coord?
+        let geobaseID: String?
+        let regionInfo: PlaceRegionInfo?
         let metro: [Metro]?
+        let distanceToSelectedGeo: [DistanceToSelectedGeo]?
 
         enum CodingKeys: String, CodingKey {
             case address, coord
             case geobaseID = "geobase_id"
             case regionInfo = "region_info"
-            case distanceToSelectedGeo = "distance_to_selected_geo"
             case metro
+            case distanceToSelectedGeo = "distance_to_selected_geo"
         }
     }
 
     // MARK: - DistanceToSelectedGeo
 
     struct DistanceToSelectedGeo: Codable {
-        let coord: Coord
-        let geobaseID: String
-        let regionInfo: DistanceToSelectedGeoRegionInfo
+        let coord: Coord?
+        let geobaseID: String?
+        let regionInfo: DistanceToSelectedGeoRegionInfo?
 
         enum CodingKeys: String, CodingKey {
             case coord
@@ -986,10 +873,10 @@ extension GroupedOffersResponse {
     // MARK: - DistanceToSelectedGeoRegionInfo
 
     struct DistanceToSelectedGeoRegionInfo: Codable {
-        let id, name, genitive, dative: String
-        let accusative, prepositional, preposition: String
-        let latitude, longitude: Double
-        let supportsGeoRadius: Bool
+        let id, name, genitive, dative: String?
+        let accusative, prepositional, preposition: String?
+        let latitude, longitude: Double?
+        let supportsGeoRadius: Bool?
 
         enum CodingKeys: String, CodingKey {
             case id, name, genitive, dative, accusative, prepositional, preposition, latitude, longitude
@@ -1000,8 +887,8 @@ extension GroupedOffersResponse {
     // MARK: - Phone
 
     struct Phone: Codable {
-        let callHourStart, callHourEnd: Int
-        let mask: String
+        let callHourStart, callHourEnd: Int?
+        let mask: String?
 
         enum CodingKeys: String, CodingKey {
             case callHourStart = "call_hour_start"
@@ -1010,25 +897,12 @@ extension GroupedOffersResponse {
         }
     }
 
-    // MARK: - Service
-
-    struct Service: Codable {
-        let service: String
-        let isActive, prolongable: Bool
-
-        enum CodingKeys: String, CodingKey {
-            case service
-            case isActive = "is_active"
-            case prolongable
-        }
-    }
-
     // MARK: - State
 
     struct State: Codable {
-        let stateNotBeaten: Bool
-        let imageUrls: [ImageURL]
-        let condition: String
+        let stateNotBeaten: Bool?
+        let imageUrls: [ImageURL]?
+        let condition: String?
 
         enum CodingKeys: String, CodingKey {
             case stateNotBeaten = "state_not_beaten"
@@ -1040,24 +914,24 @@ extension GroupedOffersResponse {
     // MARK: - ImageURL
 
     struct ImageURL: Codable {
-        let name: String
-        let sizes: ImageURLSizes
-        let preview: Preview
+        let name: String?
+        let sizes: ImageURLSizes?
+        let preview: Preview?
     }
 
     // MARK: - Preview
 
     struct Preview: Codable {
-        let version, width, height: Int
-        let data: String
+        let version, width, height: Int?
+        let data: String?
     }
 
     // MARK: - ImageURLSizes
 
     struct ImageURLSizes: Codable {
-        let the456X342N, small, the1200X900N, the120X90: String
-        let the1200X900, the92X69, thumbM, the832X624: String
-        let the456X342, the320X240, full: String
+        let the456X342N, small, the1200X900N, the120X90: String?
+        let the1200X900, the92X69, thumbM, the832X624: String?
+        let the456X342, the320X240, full: String?
 
         enum CodingKeys: String, CodingKey {
             case the456X342N = "456x342n"
@@ -1077,7 +951,7 @@ extension GroupedOffersResponse {
     // MARK: - Pagination
 
     struct Pagination: Codable {
-        let page, pageSize, totalOffersCount, totalPageCount: Int
+        let page, pageSize, totalOffersCount, totalPageCount: Int?
 
         enum CodingKeys: String, CodingKey {
             case page
@@ -1090,13 +964,13 @@ extension GroupedOffersResponse {
     // MARK: - PriceRange
 
     struct PriceRange: Codable {
-        let min, max: Max
+        let min, max: Max?
     }
 
     // MARK: - ResponseFlags
 
     struct ResponseFlags: Codable {
-        let showMatchApplicationForm: Bool
+        let showMatchApplicationForm: Bool?
 
         enum CodingKeys: String, CodingKey {
             case showMatchApplicationForm = "show_match_application_form"
@@ -1106,27 +980,25 @@ extension GroupedOffersResponse {
     // MARK: - SearchParameters
 
     struct SearchParameters: Codable {
-        let carsParams: CarsParams
-        let currency: String
-        let hasImage: Bool
-        let inStock: String
-        let creationDateTo: String?
-        let rid: [Int]
-        let geoRadius: Int
-        let withDiscount: Bool
-        let withDelivery: String
-        let catalogFilter: [CatalogFilter]
-        let onlyNDS: Bool
-        let stateGroup, exchangeGroup: String
-        let sellerGroup: [String]
-        let damageGroup, ownersCountGroup, owningTimeGroup, customsStateGroup: String
+        let carsParams: CarsParams?
+        let currency: String?
+        let hasImage: Bool?
+        let inStock: String?
+        let rid: [Int]?
+        let geoRadius: Int?
+        let withDiscount: Bool?
+        let withDelivery: String?
+        let catalogFilter: [CatalogFilter]?
+        let onlyNDS: Bool?
+        let stateGroup, exchangeGroup: String?
+        let sellerGroup: [String]?
+        let damageGroup, ownersCountGroup, owningTimeGroup, customsStateGroup: String?
 
         enum CodingKeys: String, CodingKey {
             case carsParams = "cars_params"
             case currency
             case hasImage = "has_image"
             case inStock = "in_stock"
-            case creationDateTo = "creation_date_to"
             case rid
             case geoRadius = "geo_radius"
             case withDiscount = "with_discount"
@@ -1146,9 +1018,9 @@ extension GroupedOffersResponse {
     // MARK: - CarsParams
 
     struct CarsParams: Codable {
-        let bodyTypeGroup: [String]
-        let seatsGroup: String
-        let engineGroup: [String]
+        let bodyTypeGroup: [String]?
+        let seatsGroup: String?
+        let engineGroup: [String]?
 
         enum CodingKeys: String, CodingKey {
             case bodyTypeGroup = "body_type_group"
@@ -1160,13 +1032,13 @@ extension GroupedOffersResponse {
     // MARK: - CatalogFilter
 
     struct CatalogFilter: Codable {
-        let mark, model: String
+        let mark, model: String?
     }
 
     // MARK: - Sorting
 
     struct Sorting: Codable {
-        let name: String
-        let desc: Bool
+        let name: String?
+        let desc: Bool?
     }
 }

@@ -38,28 +38,16 @@ final class ViewController: UIViewController {
         setupStream()
     }
 
-    private func resolveQuery() {
-        QueryResolver.resolve("BMW 3 новые")
-            .flatMap { resolved in
-                return SearchService.groupedOffers(by: resolved.suggests[0])
+    private func recognizeOnDevice() {
+        frameExtractor.imagePublisher
+            .throttle(for: .milliseconds(250), scheduler: DispatchQueue.global(qos: .default), latest: true)
+            .flatMap { (frame: UIImage) in
+                return OnDeviceRecognizer.predict(frame)
             }
-            .flatMap { groupedOffers in
-                return SearchService.offers(by: groupedOffers.offers[0])
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] probs in
+                self.resultLabel.text = probs.map { $0.key }.joined(separator: "\n")
             }
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case let .failure(error):
-                    fatalError(error.localizedDescription)
-                case .finished:
-                    break
-                }
-
-            }, receiveValue: { response in
-                for offer in response.offers {
-                    let info = "\(offer.title) - \(offer.formattedPrice)\n\(offer.state.imageUrls.count > 1)"
-                    print(info)
-                }
-            })
             .store(in: &bag)
     }
 
@@ -78,7 +66,7 @@ final class ViewController: UIViewController {
         let recognizedImage = scaledImage
             .flatMap { (frame: UIImage) in
                 Just(frame)
-                    .setFailureType(to: RecognizeResponseError.self)
+                    .setFailureType(to: VTBProxyResponseError.self)
                     .flatMap(RecognitionService.recognize(image:))
                     .map(Optional.init)
                     .catch { _ -> AnyPublisher<RecognizeResponse?, Never> in
@@ -87,6 +75,8 @@ final class ViewController: UIViewController {
             }
             .share()
 
+        // should have interactor here
+
         recognizedImage
             .map { (response) -> String in
                 guard let response = response else {
@@ -94,7 +84,7 @@ final class ViewController: UIViewController {
                 }
 
                 let wellRecognized = response.probabilities
-                    .filter { $0.value > 0.15 }
+                    .filter { $0.value > 0.25 }
                     .sorted(by: { $0.value > $1.value })
 
                 guard !wellRecognized.isEmpty else {
@@ -116,17 +106,22 @@ final class ViewController: UIViewController {
                 }
 
                 return response.probabilities
-                    .filter { $0.value > 0.15 }
+                    .filter { $0.value > 0.25 }
                     .sorted(by: { $0.value > $1.value })
                     .first?.key
             }
             .compactMap { $0 }
-            .flatMap { (query) -> AnyPublisher<ResolveQueryResponse?, Never> in
+            .flatMap { (query) -> AnyPublisher<GroupedOffersResponse?, Never> in
                 Just(query)
                     .setFailureType(to: Error.self)
                     .flatMap(QueryResolver.resolve(_:))
-                    .map(Optional.init)
-                    .catch { (error) -> AnyPublisher<ResolveQueryResponse?, Never> in
+                    .flatMap { (resolvedQuery: ResolveQueryResponse) in
+                        return SearchService.groupedOffers(by: resolvedQuery.suggests[0])
+                    }
+                    .map { (groupedOffers: GroupedOffersResponse) -> GroupedOffersResponse? in
+                        return groupedOffers.offers?.isEmpty == false ? groupedOffers : nil
+                    }
+                    .catch { (error) -> AnyPublisher<GroupedOffersResponse?, Never> in
                         assertionFailure(error.localizedDescription)
                         return Just(nil)
                             .eraseToAnyPublisher()
@@ -134,10 +129,39 @@ final class ViewController: UIViewController {
                     .eraseToAnyPublisher()
             }
             .compactMap { $0 }
+            .flatMap { (groupedOffers: GroupedOffersResponse) -> AnyPublisher<[ListingOffersResponse], Never> in
+                Just(groupedOffers)
+                    .setFailureType(to: Error.self)
+                    .flatMap { (groupedOffers: GroupedOffersResponse) -> AnyPublisher<[ListingOffersResponse], Error> in
+                        if let offers = groupedOffers.offers {
+                            let publishers = offers.map { (grouped: GroupedOffersResponse.Offer) in
+                                return SearchService.offers(by: grouped)
+                            }
+
+                            return Publishers.MergeMany(publishers)
+                                .collect()
+                                .eraseToAnyPublisher()
+                        } else {
+                            return Just([ListingOffersResponse]())
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .catch { (error) -> AnyPublisher<[ListingOffersResponse], Never> in
+                        assertionFailure(error.localizedDescription)
+                        return Just([]).eraseToAnyPublisher()
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .filter { !$0.isEmpty }
             .first()
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] resolvedQuery in
-                let tinderVC = router.createTinderVC(query: resolvedQuery)
+            .sink { [unowned self] mergedListings in
+                let offers = mergedListings
+                    .compactMap { $0.offers }
+                    .flatMap { $0 }
+
+                let tinderVC = router.createTinderVC(offers: offers)
                 tinderVC.modalPresentationStyle = .fullScreen
                 present(tinderVC, animated: true, completion: nil)
             }

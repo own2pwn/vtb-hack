@@ -19,13 +19,14 @@ enum Backend {
         sessionConfig.requestCachePolicy = .reloadIgnoringLocalCacheData
 
         sessionConfig.connectionProxyDictionary = {
-            return [
-                kCFNetworkProxiesHTTPEnable as String: 1,
-                kCFNetworkProxiesHTTPProxy as String: "192.168.88.245",
-                kCFNetworkProxiesHTTPPort as String: 8888,
-                kCFStreamPropertyHTTPSProxyHost as String: "192.168.88.245",
-                kCFStreamPropertyHTTPSProxyPort as String: 8888
-            ]
+            return [:]
+//            return [
+//                kCFNetworkProxiesHTTPEnable as String: 1,
+//                kCFNetworkProxiesHTTPProxy as String: "192.168.88.245",
+//                kCFNetworkProxiesHTTPPort as String: 8888,
+//                kCFStreamPropertyHTTPSProxyHost as String: "192.168.88.245",
+//                kCFStreamPropertyHTTPSProxyPort as String: 8888
+//            ]
         }()
 
         return URLSession(configuration: sessionConfig)

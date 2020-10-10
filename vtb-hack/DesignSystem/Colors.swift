@@ -36,6 +36,7 @@ class Color {
         static let gray90 = UIColor(hex: "222222")
         
         enum ColdGray {
+            static let white = UIColor(hex: "FFFFFF")
             static let coldGray5 = UIColor(hex: "F0F2F5")
             static let coldGray20 = UIColor(hex: "DDDFE3")
             static let coldGray40 = UIColor(hex: "99A0AB")

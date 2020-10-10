@@ -9,32 +9,28 @@ import Foundation
 import UIKit
 
 final class AppRouter {
+    init() {}
 
-    init() {
-        
-    }
-    
     func start(in window: UIWindow) {
-        window.rootViewController = createCarRecognizerVC() //createTinderWindow()
+        window.rootViewController = createCarRecognizerVC() // createTinderWindow()
         window.makeKeyAndVisible()
     }
-    
-    func createTinderVC(query: ResolveQueryResponse) -> UINavigationController {
-        
+
+    func createTinderVC(offers: [ListingOffersResponse.Offer]) -> UINavigationController {
         let rootNavigationController: UINavigationController
         let rootTabBarController: MainTabBarController
-        
+
         let mainTabRootNavigationController = MainNavigationController(nibName: nil, bundle: nil)
         mainTabRootNavigationController.navigationBar.isTranslucent = false
         mainTabRootNavigationController.navigationBar.barTintColor = Color.primary
-        
-        mainTabRootNavigationController.viewControllers = [TinderViewController()]
+
+        mainTabRootNavigationController.viewControllers = [TinderViewController(offers: offers)]
         mainTabRootNavigationController.tabBarItem = UITabBarItem(title: "Исследовать", image: UIImage(named: "tinder"), selectedImage: nil)
-        
+
         let favoritesTabRootNavigationController = MainNavigationController(nibName: nil, bundle: nil)
         favoritesTabRootNavigationController.viewControllers = [FavoritesViewController()]
         favoritesTabRootNavigationController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(named: "hearts"), selectedImage: nil)
-        
+
         rootTabBarController = MainTabBarController(nibName: nil, bundle: nil)
         rootTabBarController.setViewControllers([
             mainTabRootNavigationController,
@@ -45,12 +41,11 @@ final class AppRouter {
             rootViewController: rootTabBarController
         )
         rootNavigationController.setNavigationBarHidden(true, animated: false)
-        
+
         return rootNavigationController
     }
-    
+
     func createCarRecognizerVC() -> UIViewController {
         return ViewController()
     }
-
 }
