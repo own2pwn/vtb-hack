@@ -33,7 +33,12 @@ class PlaceholderView: UIView {
         return textField.text
     }
     
-    func setup(title: String?, placeholderText: String?, keyboardType: UIKeyboardType = .default) {
+    func setup(
+        title: String?,
+        placeholderText: String?,
+        keyboardType: UIKeyboardType = .default,
+        textContentType: UITextContentType? = nil
+    ) {
         titleLabel.text = title
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholderText ?? "",
@@ -41,8 +46,11 @@ class PlaceholderView: UIView {
                 NSAttributedString.Key.foregroundColor: Color.VTB.ColdGray.coldGray20,
                 NSAttributedString.Key.font: Font.body1
             ])
-        textField.tintColor = .green
         textField.keyboardType = keyboardType
+        if let contentType = textContentType {
+            textField.textContentType = contentType
+        }
+        
     }
     
     public override init(frame: CGRect) {

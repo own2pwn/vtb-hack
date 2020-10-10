@@ -60,7 +60,7 @@ class CarCell: ShadowableCollectionViewCell {
 
     func setup(title: String, model: TinderCardModel) {
         titleLabel.text = "\(title), \(model.age)"
-        subtitleLabel.text = model.occupation
+        subtitleLabel.text = model.occupationWithFormat
         if let url = model.imageUrls.last {
             imageView.kf.setImage(
                 with: URL(string: "https:\(url)"),

@@ -27,7 +27,8 @@ import UIKit
 struct TinderCardModel {
     let name: String
     let age: Int
-    let occupation: String?
+    let occupation: Int?
+    let occupationWithFormat: String?
     let image: [UIImage?]
     let imageUrls: [String]
 }

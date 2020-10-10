@@ -79,16 +79,21 @@ class AutoViewController: UIViewController {
         $0.text = "Test"
     }
     
+    private let priceLabel = TSLabel() ~> {
+        $0.textStyle = TextStyle.subtitle1.withColor(Color.VTB.gray90.dynamicForDark(Color.VTB.ColdGray.white))
+        $0.text = "Test"
+    }
+    
     private let fioTextField = PlaceholderView() ~> {
-        $0.setup(title: "ФИО", placeholderText: "")
+        $0.setup(title: "ФИО", placeholderText: "", keyboardType: .namePhonePad, textContentType: .givenName)
     }
     
     private let phoneTextField = PlaceholderView() ~> {
-        $0.setup(title: "Телефон", placeholderText: "", keyboardType: .phonePad)
+        $0.setup(title: "Телефон", placeholderText: "", keyboardType: .phonePad, textContentType: .telephoneNumber)
     }
     
     private let mailTextField = PlaceholderView() ~> {
-        $0.setup(title: "Почта", placeholderText: "example@mail.ru", keyboardType: .emailAddress)
+        $0.setup(title: "Почта", placeholderText: "example@mail.ru", keyboardType: .emailAddress, textContentType: .emailAddress)
     }
     
     private let moneySlider = SliderView() ~> {
@@ -106,7 +111,7 @@ class AutoViewController: UIViewController {
     
     // Properties
     var creditInfo = CreditInfo()
-//    var carInfo = MockCar() {
+    var carInfo: TinderCardModel?
 
     override func loadView() {
         super.loadView()
@@ -168,6 +173,7 @@ class AutoViewController: UIViewController {
         
         carStack.addArrangedSubview(carImageView)
         carStack.addArrangedSubview(titleLabel)
+        carStack.addArrangedSubview(priceLabel)
         
         
         creditStack.addArrangedSubview(fioTextField)
@@ -180,6 +186,18 @@ class AutoViewController: UIViewController {
             $0.height == 50
         }
         footerStack.addArrangedSubview(creditButton)
+        
+        titleLabel.text = (carInfo?.name ?? "") + ", " + String(carInfo?.age ?? 0)
+        priceLabel.text = carInfo?.occupationWithFormat
+        moneySlider.setup(title: "Сумма", initValue: 100_000, minValue: 100_000, maxValue: carInfo?.occupation ?? 1_000_000)
+        if let url = carInfo?.imageUrls.last {
+            carImageView.kf.setImage(
+                with: URL(string: "https:\(url)"),
+                placeholder: UIImage(named: "michelle")
+            )
+        } else {
+            carImageView.image = UIImage(named: "michelle")
+        }
     }
     
     @objc
@@ -230,20 +248,11 @@ class AutoViewController: UIViewController {
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
-                            title: "OK", style: .default, handler: { action in
-                                switch action.style{
-                                case .default:
-                                    print("default")
-                                    
-                                case .cancel:
-                                    print("cancel")
-                                    
-                                case .destructive:
-                                    print("destructive")
-                                    
-                                    
-                                }}))
+        alert.addAction(
+            UIAlertAction(title: "OK", style: .default, handler: { action in
+                
+            })
+        )
         self.present(alert, animated: true, completion: nil)
     }
 

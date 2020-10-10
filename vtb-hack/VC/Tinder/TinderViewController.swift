@@ -18,7 +18,8 @@ final class TinderViewController: UIViewController {
             return TinderCardModel(
                 name: offer.title,
                 age: offer.documents?.year?.nilIfDefault ?? offer.carInfo!.superGen!.yearFrom!,
-                occupation: offer.formattedPrice,
+                occupation: offer.price,
+                occupationWithFormat: offer.formattedPrice,
                 image: [],
                 imageUrls: offer.state!.imageUrls!.map { $0.sizes!.the1200X900N! }
             )
@@ -108,7 +109,7 @@ extension TinderViewController: ButtonStackViewDelegate, SwipeCardStackDataSourc
 
         let model = self.model[index]
         card.content = TinderCardContentView(withImageUrl: model.imageUrls.first)
-        card.footer = TinderCardFooterView(withTitle: "\(model.name), \(model.age)", subtitle: model.occupation)
+        card.footer = TinderCardFooterView(withTitle: "\(model.name), \(model.age)", subtitle: model.occupationWithFormat)
 
         return card
     }
