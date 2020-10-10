@@ -35,10 +35,10 @@ enum SearchService {
         let endpoint = "offers-listing"
 
         let filter = ListingOffersRequest.CatalogFilter(
-            mark: groupedOffer.carInfo.mark,
-            model: groupedOffer.carInfo.model,
-            generation: groupedOffer.carInfo.superGenID,
-            configuration: groupedOffer.carInfo.configurationID
+            mark: groupedOffer.carInfo!.mark!,
+            model: groupedOffer.carInfo!.model!,
+            generation: groupedOffer.carInfo!.superGenID!,
+            configuration: groupedOffer.carInfo!.configurationID!
         )
 
         let request = ListingOffersRequest(

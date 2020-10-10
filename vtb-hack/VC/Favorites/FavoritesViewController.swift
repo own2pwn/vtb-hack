@@ -8,11 +8,10 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-
     public enum PublicSpec {
         static let cvSideOffset: CGFloat = 20
     }
-    
+
     let layout = UICollectionViewFlowLayout() ~> {
         $0.sectionInset = UIEdgeInsets(
             top: 10, left: PublicSpec.cvSideOffset,
@@ -31,18 +30,18 @@ class FavoritesViewController: UIViewController {
 //        $0.register(HeaderCell.self, forCellWithReuseIdentifier: "HeaderCell")
 //        $0.register(DateCell.self, forCellWithReuseIdentifier: "DateCell")
     }
-    
+
     override func loadView() {
         super.loadView()
         view.addSubview(collectionView)
         view.backgroundColor = Color.primary
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
+
     private func setupUI() {
         title = "Избранное"
         navigationController?.extendedLayoutIncludesOpaqueBars = true
@@ -50,38 +49,28 @@ class FavoritesViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
-
 }
 
 extension FavoritesViewController: UICollectionViewDataSource {
-        
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TinderViewController.cardModels.count
+        return 0 // TinderViewController.cardModels.count
     }
-    
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarCell", for: indexPath) as? CarCell else { return UICollectionViewCell() }
-        cell.setup(title: TinderViewController.cardModels[indexPath.row].name)
+        // cell.setup(title: TinderViewController.cardModels[indexPath.row].name)
         return cell
     }
-    
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
+
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }
 
 extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let collectionViewWidth = collectionView.bounds.width
         return CGSize(
             width: collectionViewWidth - PublicSpec.cvSideOffset * 2,
-            height: CarCell.getHeight(title: TinderViewController.cardModels[indexPath.row].name)
+            height: 0 // CarCell.getHeight(title: TinderViewController.cardModels[indexPath.row].name)
         )
-        
     }
-       
 }

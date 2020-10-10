@@ -38,31 +38,6 @@ final class ViewController: UIViewController {
         setupStream()
     }
 
-    private func resolveQuery() {
-        QueryResolver.resolve("BMW 3 новые")
-            .flatMap { resolved in
-                return SearchService.groupedOffers(by: resolved.suggests[0])
-            }
-            .flatMap { groupedOffers in
-                return SearchService.offers(by: groupedOffers.offers[0])
-            }
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case let .failure(error):
-                    fatalError(error.localizedDescription)
-                case .finished:
-                    break
-                }
-
-            }, receiveValue: { response in
-                for offer in response.offers {
-                    let info = "\(offer.title) - \(offer.formattedPrice)\n\(offer.state.imageUrls.count > 1)"
-                    print(info)
-                }
-            })
-            .store(in: &bag)
-    }
-
     private func setupStream() {
         frameExtractor.imagePublisher
             .receive(on: DispatchQueue.main)
@@ -86,6 +61,8 @@ final class ViewController: UIViewController {
                     }
             }
             .share()
+
+        // should have interactor here
 
         recognizedImage
             .map { (response) -> String in
@@ -121,12 +98,18 @@ final class ViewController: UIViewController {
                     .first?.key
             }
             .compactMap { $0 }
-            .flatMap { (query) -> AnyPublisher<ResolveQueryResponse?, Never> in
+            .eraseToAnyPublisher()
+            .flatMap { (query) -> AnyPublisher<GroupedOffersResponse?, Never> in
                 Just(query)
                     .setFailureType(to: Error.self)
                     .flatMap(QueryResolver.resolve(_:))
-                    .map(Optional.init)
-                    .catch { (error) -> AnyPublisher<ResolveQueryResponse?, Never> in
+                    .flatMap { (resolvedQuery: ResolveQueryResponse) in
+                        return SearchService.groupedOffers(by: resolvedQuery.suggests[0])
+                    }
+                    .map { (groupedOffers: GroupedOffersResponse) -> GroupedOffersResponse? in
+                        return groupedOffers.offers?.isEmpty == false ? groupedOffers : nil
+                    }
+                    .catch { (error) -> AnyPublisher<GroupedOffersResponse?, Never> in
                         assertionFailure(error.localizedDescription)
                         return Just(nil)
                             .eraseToAnyPublisher()
@@ -136,8 +119,8 @@ final class ViewController: UIViewController {
             .compactMap { $0 }
             .first()
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] resolvedQuery in
-                let tinderVC = router.createTinderVC(query: resolvedQuery)
+            .sink { [unowned self] groupedOffers in
+                let tinderVC = router.createTinderVC(groupedOffers: groupedOffers)
                 tinderVC.modalPresentationStyle = .fullScreen
                 present(tinderVC, animated: true, completion: nil)
             }

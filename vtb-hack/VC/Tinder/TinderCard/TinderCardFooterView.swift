@@ -55,9 +55,9 @@ class TinderCardFooterView: UIView {
       paragraphStyle.lineBreakMode = .byTruncatingTail
       attributedText.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle],
                                    range: NSRange(location: 0, length: attributedText.length))
-      label.numberOfLines = 2
     }
 
+    label.numberOfLines = 0
     label.attributedText = attributedText
     addSubview(label)
   }

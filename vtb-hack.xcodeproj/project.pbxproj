@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,7 @@
 		69A566BC252FA10300E824BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A566BA252FA10300E824BD /* LaunchScreen.storyboard */; };
 		69A566DD252FA84300E824BD /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566DC252FA84300E824BD /* FrameExtractor.swift */; };
 		69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566E0252FB7EC00E824BD /* WithLatestFrom.swift */; };
+		69D1EC1625320EDB002C73D4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 69D1EC1525320EDB002C73D4 /* Kingfisher */; };
 		69D4FE1F2531B9C80051B0E0 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE162531B9C80051B0E0 /* Backend.swift */; };
 		69D4FE202531B9C80051B0E0 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE172531B9C80051B0E0 /* SearchService.swift */; };
 		69D4FE212531B9C80051B0E0 /* ResolveQueryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE192531B9C80051B0E0 /* ResolveQueryResponse.swift */; };
@@ -105,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D1EC1625320EDB002C73D4 /* Kingfisher in Frameworks */,
 				E16680328D27457E1C7D29A8 /* Pods_vtb_hack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +117,7 @@
 		132555622530D9E400B68C69 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
+				694721982531BAD6004F25EA /* Root-Formatters.swift */,
 				1325535D2530D84F00B68C69 /* TinderViewController.swift */,
 				132553652530D8C500B68C69 /* ButtonStackView.swift */,
 				132555712530DA1500B68C69 /* TinderButton.swift */,
@@ -247,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				69A566B3252FA10300E824BD /* ViewController.swift */,
-				694721982531BAD6004F25EA /* Root-Formatters.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -318,6 +320,9 @@
 			dependencies = (
 			);
 			name = "vtb-hack";
+			packageProductDependencies = (
+				69D1EC1525320EDB002C73D4 /* Kingfisher */,
+			);
 			productName = "vtb-hack";
 			productReference = 69A566AC252FA10300E824BD /* vtb-hack.app */;
 			productType = "com.apple.product-type.application";
@@ -345,6 +350,9 @@
 				Base,
 			);
 			mainGroup = 69A566A3252FA10300E824BD;
+			packageReferences = (
+				69D1EC1425320EDB002C73D4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 69A566AD252FA10300E824BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -657,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		69D1EC1425320EDB002C73D4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.15.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		69D1EC1525320EDB002C73D4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69D1EC1425320EDB002C73D4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 69A566A4252FA10300E824BD /* Project object */;
 }
