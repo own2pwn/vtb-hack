@@ -25,7 +25,8 @@
 import UIKit
 
 class TinderCardFooterView: UIView {
-    private var label = UILabel()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
 
     private var gradientLayer: CAGradientLayer?
 
@@ -44,37 +45,32 @@ class TinderCardFooterView: UIView {
     }
 
     private func initialize(title: String?, subtitle: String?) {
-        let attributedText = NSMutableAttributedString(
-            string: (title ?? "") + "\n",
-            attributes: NSAttributedString.Key.titleAttributes
-        )
-        if let subtitle = subtitle, !subtitle.isEmpty {
-            attributedText.append(NSMutableAttributedString(
-                string: subtitle,
-                attributes: NSAttributedString.Key.subtitleAttributes
-            ))
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 4
-            paragraphStyle.lineBreakMode = .byTruncatingTail
-            attributedText.addAttributes(
-                [NSAttributedString.Key.paragraphStyle: paragraphStyle],
-                range: NSRange(location: 0, length: attributedText.length)
-            )
-        }
+        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        subtitleLabel.font = UIFont.systemFont(ofSize: 17)
 
-        label.numberOfLines = 0
-        label.attributedText = attributedText
-        addSubview(label)
-    }
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
 
-    override func layoutSubviews() {
-        let padding: CGFloat = 20
-        label.frame = CGRect(
-            x: padding,
-            y: bounds.height - label.intrinsicContentSize.height - padding,
-            width: bounds.width - 2 * padding,
-            height: label.intrinsicContentSize.height
-        )
+        addSubview(titleLabel)
+        addSubview(subtitleLabel)
+
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        titleLabel.textAlignment = .center
+        subtitleLabel.textAlignment = .center
+
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+
+        NSLayoutConstraint.activate([
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
     }
 }
 
