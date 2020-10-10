@@ -133,11 +133,11 @@
 		132555622530D9E400B68C69 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				694721982531BAD6004F25EA /* Root-Formatters.swift */,
-				1325535D2530D84F00B68C69 /* TinderViewController.swift */,
-				132553652530D8C500B68C69 /* ButtonStackView.swift */,
-				132555712530DA1500B68C69 /* TinderButton.swift */,
 				132555672530DA0800B68C69 /* TinderCard */,
+				132553652530D8C500B68C69 /* ButtonStackView.swift */,
+				694721982531BAD6004F25EA /* Root-Formatters.swift */,
+				132555712530DA1500B68C69 /* TinderButton.swift */,
+				1325535D2530D84F00B68C69 /* TinderViewController.swift */,
 			);
 			path = Tinder;
 			sourceTree = "<group>";
@@ -160,8 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				132555682530DA0800B68C69 /* TinderCardContentView.swift */,
-				132555692530DA0800B68C69 /* TinderCardModel.swift */,
 				1325556A2530DA0800B68C69 /* TinderCardFooterView.swift */,
+				132555692530DA0800B68C69 /* TinderCardModel.swift */,
 				1325556B2530DA0800B68C69 /* TinderCardOverlay.swift */,
 			);
 			path = TinderCard;

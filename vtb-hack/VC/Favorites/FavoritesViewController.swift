@@ -7,11 +7,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
-    private static let dummyModel: [TinderCardModel] = [
-        TinderCardModel(name: "Name", age: 2020, occupation: "Occupation", image: [nil], imageUrls: [])
-    ]
-
+final class FavoritesViewController: UIViewController {
     public enum PublicSpec {
         static let cvSideOffset: CGFloat = 20
     }
@@ -30,6 +26,10 @@ class FavoritesViewController: UIViewController {
         $0.delegate = self
         $0.alwaysBounceVertical = true
         $0.register(CarCell.self, forCellWithReuseIdentifier: "CarCell")
+    }
+
+    private var model: [TinderCardModel] {
+        return likedCarsModel.map { $0.viewModel }
     }
 
     override func loadView() {
@@ -54,12 +54,15 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Self.dummyModel.count
+        return model.count
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarCell", for: indexPath) as? CarCell else { return UICollectionViewCell() }
-        cell.setup(title: Self.dummyModel[indexPath.row].name)
+        cell.setup(
+            title: model[indexPath.row].name,
+            model: model[indexPath.row]
+        )
         return cell
     }
 
@@ -74,7 +77,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDel
         let collectionViewWidth = collectionView.bounds.width
         return CGSize(
             width: collectionViewWidth - PublicSpec.cvSideOffset * 2,
-            height: CarCell.getHeight(title: Self.dummyModel[indexPath.row].name)
+            height: CarCell.getHeight(title: model[indexPath.row].name)
         )
     }
 }

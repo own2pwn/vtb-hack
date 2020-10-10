@@ -25,8 +25,15 @@
 import UIKit
 
 class TinderCardFooterView: UIView {
-    private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
+    private let titleLabel = UILabel() ~> {
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+    }
+
+    private let subtitleLabel = UILabel() ~> {
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 17)
+    }
 
     private var gradientLayer: CAGradientLayer?
 
@@ -45,9 +52,6 @@ class TinderCardFooterView: UIView {
     }
 
     private func initialize(title: String?, subtitle: String?) {
-        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        subtitleLabel.font = UIFont.systemFont(ofSize: 17)
-
         titleLabel.text = title
         subtitleLabel.text = subtitle
 
@@ -61,15 +65,15 @@ class TinderCardFooterView: UIView {
         subtitleLabel.textAlignment = .center
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
         ])
 
         NSLayoutConstraint.activate([
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -4),
+            titleLabel.leadingAnchor.constraint(equalTo: subtitleLabel.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: subtitleLabel.trailingAnchor)
         ])
     }
 }

@@ -44,11 +44,15 @@ extension GroupedOffersResponse.Offer {
 
 extension ListingOffersResponse.Offer {
     var title: String {
-        return "\(carInfo.markInfo.name) \(carInfo.modelInfo.name) \(carInfo.superGen.name)"
+        return [
+            carInfo?.markInfo?.name,
+            carInfo?.modelInfo?.name,
+            carInfo?.superGen?.name
+        ].compactMap { $0 }.joined(separator: " ")
     }
 
     var price: Int {
-        return priceInfo.rurPrice
+        return priceInfo?.rurPrice ?? -1
     }
 
     var formattedPrice: String {

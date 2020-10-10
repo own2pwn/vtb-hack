@@ -116,10 +116,39 @@ final class ViewController: UIViewController {
                     .eraseToAnyPublisher()
             }
             .compactMap { $0 }
+            .flatMap { (groupedOffers: GroupedOffersResponse) -> AnyPublisher<[ListingOffersResponse], Never> in
+                Just(groupedOffers)
+                    .setFailureType(to: Error.self)
+                    .flatMap { (groupedOffers: GroupedOffersResponse) -> AnyPublisher<[ListingOffersResponse], Error> in
+                        if let offers = groupedOffers.offers {
+                            let publishers = offers.map { (grouped: GroupedOffersResponse.Offer) in
+                                return SearchService.offers(by: grouped)
+                            }
+
+                            return Publishers.MergeMany(publishers)
+                                .collect()
+                                .eraseToAnyPublisher()
+                        } else {
+                            return Just([ListingOffersResponse]())
+                                .setFailureType(to: Error.self)
+                                .eraseToAnyPublisher()
+                        }
+                    }
+                    .catch { (error) -> AnyPublisher<[ListingOffersResponse], Never> in
+                        assertionFailure(error.localizedDescription)
+                        return Just([]).eraseToAnyPublisher()
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .filter { !$0.isEmpty }
             .first()
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] groupedOffers in
-                let tinderVC = router.createTinderVC(groupedOffers: groupedOffers)
+            .sink { [unowned self] mergedListings in
+                let offers = mergedListings
+                    .compactMap { $0.offers}
+                    .flatMap { $0 }
+
+                let tinderVC = router.createTinderVC(offers: offers)
                 tinderVC.modalPresentationStyle = .fullScreen
                 present(tinderVC, animated: true, completion: nil)
             }

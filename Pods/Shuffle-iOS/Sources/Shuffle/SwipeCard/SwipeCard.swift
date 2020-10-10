@@ -52,7 +52,7 @@ open class SwipeCard: SwipeView {
   }
 
   /// The height of the footer view.
-  public var footerHeight: CGFloat = 100 {
+  public var footerHeight: CGFloat = 240 {
     didSet {
       setNeedsLayout()
     }

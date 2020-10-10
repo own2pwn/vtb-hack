@@ -1,21 +1,26 @@
 import PopBounceButton
 import Shuffle_iOS
 
-var likedCarsModel: [TinderCardModel] = []
+typealias LikedCar = (model: ListingOffersResponse.Offer, viewModel: TinderCardModel)
+
+var likedCarsModel: [LikedCar] = []
 
 final class TinderViewController: UIViewController {
     private let cardStack = SwipeCardStack()
     private let buttonStackView = ButtonStackView()
+
+    private let responseOffers: [ListingOffersResponse.Offer]
     private let model: [TinderCardModel]
 
-    init(groupedOffers response: GroupedOffersResponse) {
-        self.model = response.offers!.map { (offer: GroupedOffersResponse.Offer) -> TinderCardModel in
+    init(offers: [ListingOffersResponse.Offer]) {
+        self.responseOffers = offers
+        self.model = offers.map { (offer: ListingOffersResponse.Offer) -> TinderCardModel in
             return TinderCardModel(
                 name: offer.title,
                 age: offer.documents?.year?.nilIfDefault ?? offer.carInfo!.superGen!.yearFrom!,
                 occupation: offer.formattedPrice,
                 image: [],
-                imageUrls: offer.state!.imageUrls!.map { $0.sizes!.full! }
+                imageUrls: offer.state!.imageUrls!.map { $0.sizes!.the1200X900N! }
             )
         }
         super.init(nibName: nil, bundle: nil)
@@ -95,7 +100,7 @@ final class TinderViewController: UIViewController {
 extension TinderViewController: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardStackDelegate {
     func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
         let card = SwipeCard()
-        card.footerHeight = 80
+        card.footerHeight = 160
         card.swipeDirections = [.left, .up, .right]
         for direction in card.swipeDirections {
             card.setOverlay(TinderCardOverlay(direction: direction), forDirection: direction)
@@ -118,7 +123,9 @@ extension TinderViewController: ButtonStackViewDelegate, SwipeCardStackDataSourc
 
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
         if direction == .right || direction == .up {
-            likedCarsModel.append(model[index])
+            likedCarsModel.append(
+                (responseOffers[index], model[index])
+            )
         }
     }
 

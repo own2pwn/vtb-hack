@@ -16,7 +16,7 @@ final class AppRouter {
         window.makeKeyAndVisible()
     }
 
-    func createTinderVC(groupedOffers: GroupedOffersResponse) -> UINavigationController {
+    func createTinderVC(offers: [ListingOffersResponse.Offer]) -> UINavigationController {
         let rootNavigationController: UINavigationController
         let rootTabBarController: MainTabBarController
 
@@ -24,7 +24,7 @@ final class AppRouter {
         mainTabRootNavigationController.navigationBar.isTranslucent = false
         mainTabRootNavigationController.navigationBar.barTintColor = Color.primary
 
-        mainTabRootNavigationController.viewControllers = [TinderViewController(groupedOffers: groupedOffers)]
+        mainTabRootNavigationController.viewControllers = [TinderViewController(offers: offers)]
         mainTabRootNavigationController.tabBarItem = UITabBarItem(title: "Исследовать", image: UIImage(named: "tinder"), selectedImage: nil)
 
         let favoritesTabRootNavigationController = MainNavigationController(nibName: nil, bundle: nil)

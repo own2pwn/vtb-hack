@@ -58,7 +58,6 @@ extension GroupedOffersResponse {
         let created: String?
         let grouppingInfo: GrouppingInfo?
         let discountOptions: DiscountOptions?
-        let ownerExpenses: OwnerExpenses?
         let deliveryInfo: Counters?
 
         enum CodingKeys: String, CodingKey {
@@ -81,7 +80,6 @@ extension GroupedOffersResponse {
             case created
             case grouppingInfo = "groupping_info"
             case discountOptions = "discount_options"
-            case ownerExpenses = "owner_expenses"
             case deliveryInfo = "delivery_info"
         }
     }
@@ -581,18 +579,6 @@ extension GroupedOffersResponse {
         enum CodingKeys: String, CodingKey {
             case minYear = "min_year"
             case maxYear = "max_year"
-        }
-    }
-
-    // MARK: - OwnerExpenses
-
-    struct OwnerExpenses: Codable {
-        let transportTax: TransportTax?
-        let osagoInsurance: [OsagoInsurance]?
-
-        enum CodingKeys: String, CodingKey {
-            case transportTax = "transport_tax"
-            case osagoInsurance = "osago_insurance"
         }
     }
 
