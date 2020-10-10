@@ -6,42 +6,19 @@
 //
 
 import Cartography
+import Combine
 import IQKeyboardManagerSwift
 import UIKit
 
-class CreditInfo {
-    var commnets: String = ""
-
-    var firstName: String?
-    var familyName: String?
-    var middleName: String?
-
-    var email: String?
-    var incomeAmount: Int = 140_000
-
-    var birthDateTime: String = "1981-11-01"
-    var birthDatePlace: String = "Калуга"
-    var gender: String = "2"
-
-    var nationalityCountryCode = "RU"
-    var phone: String?
-
-    var dateTime: String = convertToString(from: Date())
-    var interestRate: Double = 9.9
-
-    var requestedAmount: Int?
-    var requestedTerm: Int?
-    var tradeMark: String?
-    var vehicleCost: Int?
-
-    private static func convertToString(from date: Date) -> String {
+private extension Date {
+    var vtb_string: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return formatter.string(from: date)
+        return formatter.string(from: self)
     }
 }
 
-class AutoViewController: UIViewController {
+final class AutoViewController: UIViewController {
     private let scrollView = UIScrollView() ~> {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -106,9 +83,11 @@ class AutoViewController: UIViewController {
         $0.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
 
+    private var bag = Set<AnyCancellable>()
+
     // Properties
-    var creditInfo = CreditInfo()
-    var carInfo: TinderCardModel?
+    var carModel: ListingOffersResponse.Offer?
+    var viewModel: TinderCardModel?
 
     override func loadView() {
         super.loadView()
@@ -183,10 +162,10 @@ class AutoViewController: UIViewController {
         }
         footerStack.addArrangedSubview(creditButton)
 
-        titleLabel.text = (carInfo?.name ?? "") + ", " + String(carInfo?.age ?? 0)
-        priceLabel.text = carInfo?.occupationWithFormat
-        moneySlider.setup(title: "Сумма", initValue: 100_000, minValue: 100_000, maxValue: carInfo?.occupation ?? 1_000_000)
-        if let url = carInfo?.imageUrls.last {
+        titleLabel.text = (viewModel?.name ?? "") + ", " + String(viewModel?.age ?? 0)
+        priceLabel.text = viewModel?.occupationWithFormat
+        moneySlider.setup(title: "Сумма", initValue: 100_000, minValue: 100_000, maxValue: viewModel?.occupation ?? 1_000_000)
+        if let url = viewModel?.imageUrls.last {
             carImageView.kf.setImage(
                 with: URL(string: "https:\(url)"),
                 placeholder: UIImage(named: "michelle")
@@ -198,47 +177,85 @@ class AutoViewController: UIViewController {
 
     @objc
     func buttonAction(sender: UIButton!) {
-        // Car
-        creditInfo.tradeMark = "" // Вставить марку авто
-        creditInfo.vehicleCost = 1_000_000 // Вставить цену авто
-
-        // FIO
-        if let fioString = fioTextField.text, fioString.isEmpty == false {
-            let fio = fioString.components(separatedBy: " ")
-            if fio.count == 3 {
-                creditInfo.firstName = fio[0]
-                creditInfo.familyName = fio[1]
-                creditInfo.middleName = fio[2]
-            } else {
-                showAlert(title: "Ошибка", message: "Введите корректное ФИО")
-                return
-            }
-
-        } else {
-            showAlert(title: "Ошибка", message: "Введите ФИО")
+        guard
+            let carInfo = carModel,
+            let viewModel = viewModel
+        else {
             return
         }
 
-        // email
-        if let email = mailTextField.text, email.isEmpty == false {
-            creditInfo.email = email
-        } else {
+        // Car
+//        creditInfo.tradeMark = "" // Вставить марку авто
+//        creditInfo.vehicleCost = 1_000_000 // Вставить цену авто
+
+        // FIO
+        guard
+            let fioString = fioTextField.text?.nilIfDefault,
+            fioString.components(separatedBy: " ").count == 3
+        else {
+            showAlert(title: "Ошибка", message: "Введите корректное ФИО")
+            return
+        }
+
+        let lastName: String
+        let firstName: String
+        let middleName: String
+
+        do {
+            let fioComponents = fioString.components(separatedBy: " ")
+            lastName = fioComponents[0]
+            firstName = fioComponents[1]
+            middleName = fioComponents[2]
+        }
+
+        guard let email = mailTextField.text, !email.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите почту")
             return
         }
 
-        // phone
-        if let phone = phoneTextField.text, phone.isEmpty == false {
-            creditInfo.phone = phone
-        } else {
+        guard let phone = phoneTextField.text, !phone.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите номер телефона")
             return
         }
 
-        creditInfo.requestedAmount = Int(moneySlider.value ?? 0)
-        creditInfo.requestedTerm = Int(termSlider.value ?? 0)
+        let creditInfo = CarloanRequest(
+            comment: "",
+            customerParty: CarloanRequest.CustomerParty(
+                email: email,
+                incomeAmount: 50000, // TODO:
+                person: CarloanRequest.Person(
+                    birthDateTime: "1981-11-01",
+                    birthPlace: "Калуга",
+                    familyName: lastName,
+                    firstName: firstName,
+                    gender: "2", // TODO: 2?
+                    middleName: middleName,
+                    nationalityCountryCode: "RU"
+                ),
+                phone: phone
+            ),
+            datetime: Date().vtb_string,
+            interestRate: 7, // TODO: get interest rate first
+            requestedAmount: Int(moneySlider.value ?? 0),
+            requestedTerm: Int(termSlider.value ?? 0),
+            tradeMark: carInfo.carInfo!.mark!,
+            vehicleCost: carInfo.price
+        )
 
-        // И тут отправить запрос
+        let req: AnyPublisher<CarloanResponse, VTBProxyResponseError> =
+            VTBProxy.post(url: URL(string: "https://gw.hackathon.vtb.ru/vtb/hackathon/carloan")!, model: creditInfo)
+
+        req.sink { completion in
+            switch completion {
+            case let .failure(e):
+                assertionFailure(e.localizedDescription)
+            case .finished:
+                break
+            }
+        } receiveValue: { response in
+            print("got credit resp", response)
+        }
+        .store(in: &bag)
     }
 
     private func showAlert(title: String, message: String) {
@@ -258,5 +275,11 @@ extension AutoViewController {
         IQKeyboardManager.shared.keyboardDistanceFromTextField = 40
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+    }
+}
+
+extension String: DefaultValueNullable {
+    var nilIfDefault: String? {
+        return isEmpty ? nil : self
     }
 }

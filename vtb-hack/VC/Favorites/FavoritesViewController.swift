@@ -68,7 +68,8 @@ extension FavoritesViewController: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let autoVC = AutoViewController()
-        autoVC.carInfo = model[indexPath.row]
+        autoVC.carModel = likedCarsModel[indexPath.row].model
+        autoVC.viewModel = likedCarsModel[indexPath.row].viewModel
         navigationController?.pushViewController(autoVC, animated: true)
     }
 }
