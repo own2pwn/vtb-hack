@@ -35,6 +35,9 @@
 		13F5ADC52531ED6F00E28C73 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADC42531ED6F00E28C73 /* SliderView.swift */; };
 		13F5ADC82531F00500E28C73 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADC72531F00500E28C73 /* PlaceholderView.swift */; };
 		13F5ADCB25320B8700E28C73 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5ADCA25320B8700E28C73 /* CustomButton.swift */; };
+		6933D3F2253243D200472EEC /* VTBProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6933D3F1253243D200472EEC /* VTBProxy.swift */; };
+		6933D3F52532468800472EEC /* CalcSettingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6933D3F42532468800472EEC /* CalcSettingsResponse.swift */; };
+		6933D3F8253246D600472EEC /* CalcCalculateNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6933D3F7253246D600472EEC /* CalcCalculateNet.swift */; };
 		694721992531BAD6004F25EA /* Root-Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694721982531BAD6004F25EA /* Root-Formatters.swift */; };
 		69A566B0252FA10300E824BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566AF252FA10300E824BD /* AppDelegate.swift */; };
 		69A566B4252FA10300E824BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566B3252FA10300E824BD /* ViewController.swift */; };
@@ -44,6 +47,8 @@
 		69A566DD252FA84300E824BD /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566DC252FA84300E824BD /* FrameExtractor.swift */; };
 		69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A566E0252FB7EC00E824BD /* WithLatestFrom.swift */; };
 		69D1EC1625320EDB002C73D4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 69D1EC1525320EDB002C73D4 /* Kingfisher */; };
+		69D26EE32532487B0029FCF3 /* CarloanRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D26EE22532487B0029FCF3 /* CarloanRequest.swift */; };
+		69D26EE8253249020029FCF3 /* CarloanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D26EE7253249020029FCF3 /* CarloanResponse.swift */; };
 		69D4FE1F2531B9C80051B0E0 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE162531B9C80051B0E0 /* Backend.swift */; };
 		69D4FE202531B9C80051B0E0 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE172531B9C80051B0E0 /* SearchService.swift */; };
 		69D4FE212531B9C80051B0E0 /* ResolveQueryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D4FE192531B9C80051B0E0 /* ResolveQueryResponse.swift */; };
@@ -86,6 +91,9 @@
 		13F5ADC72531F00500E28C73 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		13F5ADCA25320B8700E28C73 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2D38C19CE7178D77C5F025B5 /* Pods-vtb-hack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vtb-hack.debug.xcconfig"; path = "Target Support Files/Pods-vtb-hack/Pods-vtb-hack.debug.xcconfig"; sourceTree = "<group>"; };
+		6933D3F1253243D200472EEC /* VTBProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTBProxy.swift; sourceTree = "<group>"; };
+		6933D3F42532468800472EEC /* CalcSettingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcSettingsResponse.swift; sourceTree = "<group>"; };
+		6933D3F7253246D600472EEC /* CalcCalculateNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcCalculateNet.swift; sourceTree = "<group>"; };
 		694721982531BAD6004F25EA /* Root-Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Root-Formatters.swift"; sourceTree = "<group>"; };
 		69A566AC252FA10300E824BD /* vtb-hack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vtb-hack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A566AF252FA10300E824BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,8 @@
 		69A566BD252FA10300E824BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69A566DC252FA84300E824BD /* FrameExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
 		69A566E0252FB7EC00E824BD /* WithLatestFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithLatestFrom.swift; sourceTree = "<group>"; };
+		69D26EE22532487B0029FCF3 /* CarloanRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarloanRequest.swift; sourceTree = "<group>"; };
+		69D26EE7253249020029FCF3 /* CarloanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarloanResponse.swift; sourceTree = "<group>"; };
 		69D4FE162531B9C80051B0E0 /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		69D4FE172531B9C80051B0E0 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		69D4FE192531B9C80051B0E0 /* ResolveQueryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolveQueryResponse.swift; sourceTree = "<group>"; };
@@ -245,6 +255,7 @@
 				69D4FE1E2531B9C80051B0E0 /* QueryResolver.swift */,
 				69FBA1A52531F35A00B59E54 /* RecognitionService.swift */,
 				69D4FE172531B9C80051B0E0 /* SearchService.swift */,
+				6933D3F1253243D200472EEC /* VTBProxy.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -313,6 +324,10 @@
 		69D4FE182531B9C80051B0E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6933D3F7253246D600472EEC /* CalcCalculateNet.swift */,
+				6933D3F42532468800472EEC /* CalcSettingsResponse.swift */,
+				69D26EE22532487B0029FCF3 /* CarloanRequest.swift */,
+				69D26EE7253249020029FCF3 /* CarloanResponse.swift */,
 				69D4FE1A2531B9C80051B0E0 /* GroupedOffersRequest.swift */,
 				69D4FE1B2531B9C80051B0E0 /* GroupedOffersResponse.swift */,
 				69D4FE1D2531B9C80051B0E0 /* ListingOffersRequest.swift */,
@@ -442,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6933D3F52532468800472EEC /* CalcSettingsResponse.swift in Sources */,
 				69D4FE212531B9C80051B0E0 /* ResolveQueryResponse.swift in Sources */,
 				69D4FE262531B9C80051B0E0 /* QueryResolver.swift in Sources */,
 				132555A32530EBB700B68C69 /* TextStyle.swift in Sources */,
@@ -457,12 +473,15 @@
 				69A566B0252FA10300E824BD /* AppDelegate.swift in Sources */,
 				69D4FE232531B9C80051B0E0 /* GroupedOffersResponse.swift in Sources */,
 				132555852530E65800B68C69 /* Tap.swift in Sources */,
+				6933D3F8253246D600472EEC /* CalcCalculateNet.swift in Sources */,
 				131C43362531CFA500057D51 /* AutoViewController.swift in Sources */,
 				132555772530E20A00B68C69 /* MainNavigationController.swift in Sources */,
 				1325558F2530E83500B68C69 /* UIColor.swift in Sources */,
+				69D26EE32532487B0029FCF3 /* CarloanRequest.swift in Sources */,
 				13F5ADCB25320B8700E28C73 /* CustomButton.swift in Sources */,
 				132555A92530EC2D00B68C69 /* NSAttributedString.swift in Sources */,
 				694721992531BAD6004F25EA /* Root-Formatters.swift in Sources */,
+				6933D3F2253243D200472EEC /* VTBProxy.swift in Sources */,
 				1325535E2530D84F00B68C69 /* TinderViewController.swift in Sources */,
 				132555932530E9E300B68C69 /* ShadowableCollectionViewCell.swift in Sources */,
 				1325556F2530DA0800B68C69 /* TinderCardOverlay.swift in Sources */,
@@ -476,6 +495,7 @@
 				69A566E1252FB7EC00E824BD /* WithLatestFrom.swift in Sources */,
 				69FBA1A62531F35A00B59E54 /* RecognitionService.swift in Sources */,
 				69D4FE242531B9C80051B0E0 /* ListingOffersResponse.swift in Sources */,
+				69D26EE8253249020029FCF3 /* CarloanResponse.swift in Sources */,
 				1325559C2530EA7D00B68C69 /* UIScreen.swift in Sources */,
 				1325557B2530E25500B68C69 /* AppRouter.swift in Sources */,
 				132555AF2530ED8E00B68C69 /* Font.swift in Sources */,

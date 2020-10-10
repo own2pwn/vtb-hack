@@ -53,7 +53,7 @@ final class ViewController: UIViewController {
         let recognizedImage = scaledImage
             .flatMap { (frame: UIImage) in
                 Just(frame)
-                    .setFailureType(to: RecognizeResponseError.self)
+                    .setFailureType(to: VTBProxyResponseError.self)
                     .flatMap(RecognitionService.recognize(image:))
                     .map(Optional.init)
                     .catch { _ -> AnyPublisher<RecognizeResponse?, Never> in
