@@ -8,6 +8,7 @@ var likedCarsModel: [LikedCar] = []
 final class TinderViewController: UIViewController {
     private let cardStack = SwipeCardStack()
     private let buttonStackView = ButtonStackView()
+    private let router = AppRouter()
 
     private let responseOffers: [ListingOffersResponse.Offer]
     private let model: [TinderCardModel]
@@ -46,7 +47,7 @@ final class TinderViewController: UIViewController {
 
     private func configureNavigationBar() {
         let backButton = UIBarButtonItem(
-            title: "Back",
+            title: "Закрыть",
             style: .plain,
             target: self,
             action: #selector(handleShift)
@@ -55,15 +56,15 @@ final class TinderViewController: UIViewController {
         backButton.tintColor = .lightGray
         navigationItem.leftBarButtonItem = backButton
 
-        let forwardButton = UIBarButtonItem(
-            title: "Forward",
-            style: .plain,
-            target: self,
-            action: #selector(handleShift)
-        )
-        forwardButton.tag = 2
-        forwardButton.tintColor = .lightGray
-        navigationItem.rightBarButtonItem = forwardButton
+//        let forwardButton = UIBarButtonItem(
+//            title: "Forward",
+//            style: .plain,
+//            target: self,
+//            action: #selector(handleShift)
+//        )
+//        forwardButton.tag = 2
+//        forwardButton.tintColor = .lightGray
+//        navigationItem.rightBarButtonItem = forwardButton
 
         navigationController?.navigationBar.layer.zPosition = -1
     }
@@ -92,7 +93,8 @@ final class TinderViewController: UIViewController {
 
     @objc
     private func handleShift(_ sender: UIButton) {
-        cardStack.shift(withDistance: sender.tag == 1 ? -1 : 1, animated: true)
+        let firstVC = router.createCarRecognizerVC()
+        UIApplication.shared.keyWindow?.rootViewController = firstVC
     }
 }
 

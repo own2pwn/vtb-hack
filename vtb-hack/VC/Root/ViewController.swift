@@ -71,7 +71,7 @@ final class ViewController: UIViewController {
                 }
 
                 let wellRecognized = response.probabilities
-                    .filter { $0.value > 0.15 }
+                    .filter { $0.value > 0.25 }
                     .sorted(by: { $0.value > $1.value })
 
                 guard !wellRecognized.isEmpty else {
@@ -93,7 +93,7 @@ final class ViewController: UIViewController {
                 }
 
                 return response.probabilities
-                    .filter { $0.value > 0.15 }
+                    .filter { $0.value > 0.25 }
                     .sorted(by: { $0.value > $1.value })
                     .first?.key
             }
