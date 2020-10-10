@@ -140,10 +140,16 @@ extension TinderViewController: ButtonStackViewDelegate, SwipeCardStackDataSourc
             cardStack.swipe(.left, animated: true)
         case 1:
             cardStack.swipe(.up, animated: true)
+            openAR()
         case 2:
             cardStack.swipe(.right, animated: true)
         default:
             break
         }
+    }
+
+    private func openAR() {
+        let controller = CarDemoViewController()
+        present(controller, animated: true)
     }
 }

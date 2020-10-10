@@ -39,7 +39,7 @@ class ButtonStackView: UIStackView {
     }()
 
     private var allButtons: [TinderButton] {
-        return [passButton, /* superLikeButton, */ likeButton]
+        return [passButton, superLikeButton, likeButton]
     }
 
     override init(frame: CGRect) {
@@ -58,7 +58,7 @@ class ButtonStackView: UIStackView {
         let largeMultiplier: CGFloat = 66 / 414 // based on width of iPhone 8+
         let smallMultiplier: CGFloat = 54 / 414 // based on width of iPhone 8+
         addArrangedSubview(from: passButton, diameterMultiplier: largeMultiplier)
-        // addArrangedSubview(from: superLikeButton, diameterMultiplier: smallMultiplier)
+        addArrangedSubview(from: superLikeButton, diameterMultiplier: smallMultiplier)
         addArrangedSubview(from: likeButton, diameterMultiplier: largeMultiplier)
     }
 
